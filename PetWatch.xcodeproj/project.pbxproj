@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		6C2FE0822562F79500040F5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C2FE0812562F79500040F5A /* Assets.xcassets */; };
 		6C2FE0852562F79500040F5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C2FE0832562F79500040F5A /* LaunchScreen.storyboard */; };
 		6C2FE0952562F9D400040F5A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C2FE0942562F9D400040F5A /* GoogleService-Info.plist */; };
+		B60DB9E025631AB10086F676 /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60DB9DF25631AB10086F676 /* Pet.swift */; };
 		E2E56EF5CA398A87133EE9D1 /* Pods_PetWatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB9849F1F7E54CFAB752E4E /* Pods_PetWatch.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		6C2FE0862562F79500040F5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6C2FE0942562F9D400040F5A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7D16A92DEEF6ABCA0E92E78F /* Pods-PetWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetWatch.release.xcconfig"; path = "Target Support Files/Pods-PetWatch/Pods-PetWatch.release.xcconfig"; sourceTree = "<group>"; };
+		B60DB9DF25631AB10086F676 /* Pet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 			children = (
 				6C2FE0922562F80800040F5A /* Views */,
 				6C2FE08D2562F7A800040F5A /* Resources */,
+				B60DB9DF25631AB10086F676 /* Pet.swift */,
 			);
 			path = PetWatch;
 			sourceTree = "<group>";
@@ -104,7 +107,6 @@
 				5052C19A7F5BA80786A159F5 /* Pods-PetWatch.debug.xcconfig */,
 				7D16A92DEEF6ABCA0E92E78F /* Pods-PetWatch.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -231,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B60DB9E025631AB10086F676 /* Pet.swift in Sources */,
 				6C2FE0792562F79100040F5A /* AppDelegate.swift in Sources */,
 				6C2FE07B2562F79100040F5A /* SceneDelegate.swift in Sources */,
 			);
@@ -381,7 +384,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FK22X67JSW;
+				DEVELOPMENT_TEAM = 746938BQUT;
 				INFOPLIST_FILE = PetWatch/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -401,7 +404,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FK22X67JSW;
+				DEVELOPMENT_TEAM = 746938BQUT;
 				INFOPLIST_FILE = PetWatch/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
