@@ -38,11 +38,11 @@ class PetController {
                 return
             }
 
-            storageRef.downloadURL(completion: { (downloadURL, err) in
-                guard let uid = user?.user.uid else { return }
-                self.firestoreDB.collection("users").document(uid).setData(["email": email, "name": name, "uid": uid])
-                completion(.success(true))
-            })
+//            storageRef.downloadURL(completion: { (downloadURL, err) in
+//                guard let uid = user?.user.uid else { return }
+//                self.firestoreDB.collection("users").document(uid).setData(["email": email, "name": name, "uid": uid])
+//                completion(.success(true))
+//            })
         })
     }
     
