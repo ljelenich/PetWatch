@@ -26,7 +26,9 @@ class Pet {
     var emergencyContact: String
     var specialInstructions: String
     
-    init(profileImage: UIImage?, name: String, gender: String, petType: String, breed: String, color: String, birthday: String, outsideSchedule: String, primaryFood: String, allergies: String, spayedNeutered: Bool, microchip: String, vetName: String, medications: String, emergencyContact: String, specialInstructions: String) {
+
+    init(profileImage: UIImage? = UIImage(), name: String, gender: String, petType: String, breed: String, color: String, birthday: String, outsideSchedule: String, primaryFood: String, allergies: String, spayedNeutered: Bool, microchip: String, vetName: String, medications: String, emergencyContact: String, specialInstructions: String) {
+
         self.profileImage = profileImage
         self.name = name
         self.gender = gender

@@ -11,6 +11,7 @@ import FirebaseAuth
 import FirebaseStorage
 
 class UserController {
+    
     //MARK: - Shared Instance
     static let shared = UserController()
     
@@ -22,7 +23,7 @@ class UserController {
     var users: User?
     
     //MARK: - CRUD Functions
-    func createUser(email: String, name: String, password: String, image: UIImage?, completion: @escaping (Result<Bool, UserError>) -> Void) {
+    func createUser(email: String, password: String, image: UIImage?, completion: @escaping (Result<Bool, UserError>) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
             if let error = error {
                 print("There was an error authorizing user: \(error.localizedDescription)")
@@ -45,7 +46,7 @@ class UserController {
   
                 storageRef.downloadURL(completion: { (downloadURL, err) in
                     guard let uid = user?.user.uid else { return }
-                    self.firestoreDB.collection("users").document(uid).setData(["email": email, "name": name, "uid": uid])
+                    self.firestoreDB.collection("users").document(uid).setData(["email": email, "uid": uid])
                     completion(.success(true))
                 })
             })
@@ -56,26 +57,12 @@ class UserController {
         firestoreDB.collection("users").document(uid).getDocument { (document, error) in
             if let document = document, document.exists {
                 guard let dictionary = document.data() else { return }
-                guard let name = dictionary["name"] as? String else { return }
                 guard let email = dictionary["email"] as? String else { return }
-//                let user = User(name: name, email: email)
-//                completion(user)
+                let user = User(email: email, uid: uid)
+                completion(user)
             } else {
                 completion(error as! User)
                 print("Document does not exist")
-            }
-        }
-    }
-    
-    func updateUser(_ uid: String, username: String, location: String, bio: String, completion: @escaping (Result<User?, UserError>) -> Void) {
-        firestoreDB.collection("users").document(uid).setData(["username": username], merge: true) { error in
-            if let error = error {
-                print("There was an error updating data: \(error.localizedDescription)")
-                completion(.failure(.fbUserError(error)))
-                return
-            } else {
-                completion(.success(self.user))
-                print("Document successfully updated")
             }
         }
     }

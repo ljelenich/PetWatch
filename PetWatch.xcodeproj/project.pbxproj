@@ -17,6 +17,7 @@
 		6C2FE0952562F9D400040F5A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C2FE0942562F9D400040F5A /* GoogleService-Info.plist */; };
 		6C42AFB62562FF3E005D7255 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C42AFB52562FF3E005D7255 /* UserController.swift */; };
 		B60DBA00256343E60086F676 /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60DB9FF256343E60086F676 /* Pet.swift */; };
+		B60DBA09256439020086F676 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B60DBA08256439020086F676 /* Login.storyboard */; };
 		E2E56EF5CA398A87133EE9D1 /* Pods_PetWatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB9849F1F7E54CFAB752E4E /* Pods_PetWatch.framework */; };
 		FA6755322563476E00A8EEF9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6755312563476E00A8EEF9 /* User.swift */; };
 /* End PBXBuildFile section */
@@ -37,6 +38,7 @@
 		6C42AFB52562FF3E005D7255 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		7D16A92DEEF6ABCA0E92E78F /* Pods-PetWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetWatch.release.xcconfig"; path = "Target Support Files/Pods-PetWatch/Pods-PetWatch.release.xcconfig"; sourceTree = "<group>"; };
 		B60DB9FF256343E60086F676 /* Pet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
+		B60DBA08256439020086F676 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		FA6755312563476E00A8EEF9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,7 +66,6 @@
 			isa = PBXGroup;
 			children = (
 				6C2FE0772562F79100040F5A /* PetWatch */,
-				6C2FE0762562F79100040F5A /* Products */,
 				B08A33686FACFE79657BB64E /* Pods */,
 				EFFACA9E2282C603B408E508 /* Frameworks */,
 			);
@@ -76,6 +77,7 @@
 				6C2FE0752562F79100040F5A /* PetWatch.app */,
 			);
 			name = Products;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		6C2FE0772562F79100040F5A /* PetWatch */ = {
@@ -93,6 +95,7 @@
 		6C2FE08D2562F7A800040F5A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6C2FE0762562F79100040F5A /* Products */,
 				6C2FE0942562F9D400040F5A /* GoogleService-Info.plist */,
 				6C2FE0782562F79100040F5A /* AppDelegate.swift */,
 				6C2FE07A2562F79100040F5A /* SceneDelegate.swift */,
@@ -115,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				6C2FE07E2562F79100040F5A /* Main.storyboard */,
+				B60DBA08256439020086F676 /* Login.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -224,6 +228,7 @@
 				6C2FE0852562F79500040F5A /* LaunchScreen.storyboard in Resources */,
 				6C2FE0952562F9D400040F5A /* GoogleService-Info.plist in Resources */,
 				6C2FE0822562F79500040F5A /* Assets.xcassets in Resources */,
+				B60DBA09256439020086F676 /* Login.storyboard in Resources */,
 				6C2FE0802562F79100040F5A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
