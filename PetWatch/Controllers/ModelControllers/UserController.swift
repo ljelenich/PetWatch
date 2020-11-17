@@ -23,33 +23,15 @@ class UserController {
     var users: User?
     
     //MARK: - CRUD Functions
-    func createUser(email: String, password: String, image: UIImage?, completion: @escaping (Result<Bool, UserError>) -> Void) {
+    func createUser(email: String, password: String, completion: @escaping (Result<Bool, UserError>) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
             if let error = error {
                 print("There was an error authorizing user: \(error.localizedDescription)")
                 completion(.failure(.fbUserError(error)))
             }
-
-            guard let image = image else { return }
-            guard let uploadData = image.jpegData(compressionQuality: 0.3) else { return }
-
-            let filename = Auth.auth().currentUser?.uid ?? ""
-            
-            let storageRef = Storage.storage().reference().child("profileImage").child(filename)
-            storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
-                
-                if let error = error {
-                    print("There was an error uploading image data: \(error.localizedDescription)")
-                    completion(.failure(.fbUserError(error)))
-                    return
-                }
-  
-                storageRef.downloadURL(completion: { (downloadURL, err) in
-                    guard let uid = user?.user.uid else { return }
-                    self.firestoreDB.collection("users").document(uid).setData(["email": email, "uid": uid])
-                    completion(.success(true))
-                })
-            })
+            guard let uid = user?.user.uid else { return }
+            self.firestoreDB.collection("users").document(uid).setData(["email": email, "uid": uid])
+            completion(.success(true))
         })
     }
     
