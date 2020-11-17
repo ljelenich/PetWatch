@@ -32,7 +32,7 @@ class Pet {
     var emergencyContactInfo: String
     var specialInstructions: String
     
-    init(profileImage: UIImage?, name: String, gender: String, petType: String, breed: String, color: String, birthday: String, outsideSchedule: String, primaryFood: String, servingSize: String, snackFoods: String, feedingSchedule: String, allergies: String, spayedNeutered: Bool, microchip: String, vetName: String, vetContactInfo: String, medications: String, medicationInstructions: String, emergencyContact: String, emergencyContactInfo: String, specialInstructions: String) {
+    init(profileImage: UIImage? = UIImage(), name: String, gender: String, petType: String, breed: String, color: String, birthday: String, outsideSchedule: String, primaryFood: String, servingSize: String, snackFoods: String, feedingSchedule: String, allergies: String, spayedNeutered: Bool, microchip: String, vetName: String, vetContactInfo: String, medications: String, medicationInstructions: String, emergencyContact: String, emergencyContactInfo: String, specialInstructions: String) {
         self.profileImage = profileImage
         self.name = name
         self.gender = gender
