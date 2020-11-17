@@ -8,13 +8,11 @@
 import Foundation
 
 class User {
-    var username: String
     var email: String
     var uid: String
     
-    init(username: String, email: String, uid: String) {
+    init(email: String, uid: String) {
         self.email = email
-        self.username = username
         self.uid = uid
     }
 }

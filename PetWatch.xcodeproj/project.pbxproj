@@ -64,7 +64,6 @@
 			isa = PBXGroup;
 			children = (
 				6C2FE0772562F79100040F5A /* PetWatch */,
-				6C2FE0762562F79100040F5A /* Products */,
 				B08A33686FACFE79657BB64E /* Pods */,
 				EFFACA9E2282C603B408E508 /* Frameworks */,
 			);
@@ -76,6 +75,7 @@
 				6C2FE0752562F79100040F5A /* PetWatch.app */,
 			);
 			name = Products;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		6C2FE0772562F79100040F5A /* PetWatch */ = {
@@ -93,6 +93,7 @@
 		6C2FE08D2562F7A800040F5A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6C2FE0762562F79100040F5A /* Products */,
 				6C2FE0942562F9D400040F5A /* GoogleService-Info.plist */,
 				6C2FE0782562F79100040F5A /* AppDelegate.swift */,
 				6C2FE07A2562F79100040F5A /* SceneDelegate.swift */,
