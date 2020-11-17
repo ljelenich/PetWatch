@@ -17,6 +17,7 @@ class LoginSignupViewController: UIViewController {
     //MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Test
     }
     
     //MARK: - Actions
