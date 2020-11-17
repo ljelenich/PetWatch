@@ -16,7 +16,9 @@
 		6C2FE0852562F79500040F5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C2FE0832562F79500040F5A /* LaunchScreen.storyboard */; };
 		6C2FE0952562F9D400040F5A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C2FE0942562F9D400040F5A /* GoogleService-Info.plist */; };
 		6C42AFB62562FF3E005D7255 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C42AFB52562FF3E005D7255 /* UserController.swift */; };
+		B60DBA00256343E60086F676 /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60DB9FF256343E60086F676 /* Pet.swift */; };
 		E2E56EF5CA398A87133EE9D1 /* Pods_PetWatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB9849F1F7E54CFAB752E4E /* Pods_PetWatch.framework */; };
+		FA6755322563476E00A8EEF9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6755312563476E00A8EEF9 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		6C2FE0942562F9D400040F5A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6C42AFB52562FF3E005D7255 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		7D16A92DEEF6ABCA0E92E78F /* Pods-PetWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetWatch.release.xcconfig"; path = "Target Support Files/Pods-PetWatch/Pods-PetWatch.release.xcconfig"; sourceTree = "<group>"; };
+		B60DB9FF256343E60086F676 /* Pet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
+		FA6755312563476E00A8EEF9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,7 @@
 		6C2FE0772562F79100040F5A /* PetWatch */ = {
 			isa = PBXGroup;
 			children = (
+				B60DB9FE256343C60086F676 /* Models */,
 				6C0C1A6C2563194300CAD171 /* Helpers and Extensions */,
 				6C42AFCD25630074005D7255 /* Controllers */,
 				6C2FE0922562F80800040F5A /* Views */,
@@ -138,6 +143,15 @@
 				7D16A92DEEF6ABCA0E92E78F /* Pods-PetWatch.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		B60DB9FE256343C60086F676 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B60DB9FF256343E60086F676 /* Pet.swift */,
+				FA6755312563476E00A8EEF9 /* User.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		EFFACA9E2282C603B408E508 /* Frameworks */ = {
@@ -266,8 +280,10 @@
 				6C42AFB62562FF3E005D7255 /* UserController.swift in Sources */,
 				6C2FE0792562F79100040F5A /* AppDelegate.swift in Sources */,
 				6C2FE07B2562F79100040F5A /* SceneDelegate.swift in Sources */,
+				B60DBA00256343E60086F676 /* Pet.swift in Sources */,
 				6C0C1A6F2563198000CAD171 /* UserError.swift in Sources */,
 				6C0C1A7325631DD100CAD171 /* PetController.swift in Sources */,
+				FA6755322563476E00A8EEF9 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
