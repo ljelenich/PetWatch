@@ -16,8 +16,10 @@ class PetListTableViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         tableView.delegate = self
         tableView.dataSource = self
+
     }
     
     //MARK: - Actions
@@ -29,16 +31,16 @@ class PetListTableViewController: UIViewController {
         } catch let signOutErr {
             print("Failed to sign out:", signOutErr)
         }
+
     }
     
     @IBAction func addPetButtonTapped(_ sender: Any) {
+        
     }
     
     @IBAction func aspcaInfoButtonTapped(_ sender: Any) {
+        
     }
-    
-
-
 }
 
 extension PetListTableViewController: UITableViewDelegate, UITableViewDataSource {
@@ -49,5 +51,6 @@ extension PetListTableViewController: UITableViewDelegate, UITableViewDataSource
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return UITableViewCell()
+
     }
 }
