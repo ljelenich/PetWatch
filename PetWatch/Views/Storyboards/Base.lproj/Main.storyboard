@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="o6q-QP-er7">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -150,7 +150,7 @@
         <!--Notifications-->
         <scene sceneID="RwQ-5U-YTN">
             <objects>
-                <viewController id="wac-5i-AOR" sceneMemberID="viewController">
+                <viewController id="wac-5i-AOR" customClass="NotificationTableViewController" customModule="PetWatch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="H82-Ly-4SD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -159,7 +159,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="87" id="dfD-oW-ZQC">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="87" id="dfD-oW-ZQC" customClass="NotificationTableViewCell" customModule="PetWatch" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="87"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dfD-oW-ZQC" id="aMG-8L-E7V">
@@ -168,6 +168,9 @@
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uqc-Eo-5iy">
                                                     <rect key="frame" x="329" y="28" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="disableSwitchToggled:" destination="dfD-oW-ZQC" eventType="valueChanged" id="jml-mx-gFh"/>
+                                                    </connections>
                                                 </switch>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jUU-bf-DvP">
                                                     <rect key="frame" x="36" y="13" width="58" height="61"/>
@@ -194,6 +197,11 @@
                                                 <constraint firstItem="jUU-bf-DvP" firstAttribute="centerY" secondItem="aMG-8L-E7V" secondAttribute="centerY" id="sdD-yR-dhR"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="disableSwitch" destination="Uqc-Eo-5iy" id="5g6-Uc-hoC"/>
+                                            <outlet property="timeLabel" destination="iQH-al-Uju" id="P07-1m-1eq"/>
+                                            <outlet property="titleLabel" destination="nCZ-7p-0tl" id="rbO-vS-FAc"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -210,37 +218,46 @@
                     <navigationItem key="navigationItem" title="Notifications" id="3hc-qA-Vqq">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="BQ4-QS-2qx">
                             <connections>
-                                <segue destination="Z1E-Ag-kvI" kind="show" id="LUu-Wf-TSM"/>
+                                <segue destination="Z1E-Ag-kvI" kind="show" identifier="" id="LUu-Wf-TSM"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="lAO-LH-J3a" id="bU0-m4-54Q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DJK-g7-Evr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1398.5507246376812" y="655.58035714285711"/>
         </scene>
-        <!--View Controller-->
+        <!--Notification View Controller-->
         <scene sceneID="hg3-Zi-2Sf">
             <objects>
-                <viewController id="Z1E-Ag-kvI" sceneMemberID="viewController">
+                <viewController id="Z1E-Ag-kvI" customClass="NotificationViewController" customModule="PetWatch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="u2k-L9-4Ci">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="0Lk-sa-Kr3">
                                 <rect key="frame" x="16" y="152" width="382" height="216"/>
+                                <connections>
+                                    <action selector="datePickerPressed:" destination="Z1E-Ag-kvI" eventType="valueChanged" id="R0x-VG-3IO"/>
+                                </connections>
                             </datePicker>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uTl-pn-5ja">
-                                <rect key="frame" x="16" y="384" width="382" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SvM-GF-b51">
                                 <rect key="frame" x="64" y="434" width="286" height="30"/>
                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Disable Alert"/>
+                                <connections>
+                                    <action selector="disableButtonTapped:" destination="Z1E-Ag-kvI" eventType="touchUpInside" id="Y3A-ge-M3L"/>
+                                </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uTl-pn-5ja">
+                                <rect key="frame" x="16" y="392" width="382" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lNo-np-0Fe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -259,8 +276,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8gO-hS-cmg">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="oy1-Nn-qgj"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="oy1-Nn-qgj">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="Z1E-Ag-kvI" id="k2a-tI-QOH"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="datePicker" destination="0Lk-sa-Kr3" id="3RJ-Jj-fKP"/>
+                        <outlet property="titleTextField" destination="uTl-pn-5ja" id="xTB-QJ-jvk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uGF-If-nei" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -269,7 +294,7 @@
         <!--My Pets-->
         <scene sceneID="vAe-8N-MaG">
             <objects>
-                <viewController storyboardIdentifier="myPets" id="Z8K-Jx-yNu" customClass="PetListTableViewController" customModule="PetWatch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Z8K-Jx-yNu" customClass="PetListTableViewController" customModule="PetWatch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fHa-ST-THP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -349,6 +374,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="DMQ-9r-EVg" id="ulz-v8-FUw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hgb-Ij-eIJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="nYF-HT-XtW" userLabel="Exit" sceneMemberID="exit"/>
@@ -842,10 +870,10 @@
             </objects>
             <point key="canvasLocation" x="2202.898550724638" y="-1528.125"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar View Controller-->
         <scene sceneID="fhS-eC-Fyn">
             <objects>
-                <tabBarController storyboardIdentifier="tabBarController" id="o6q-QP-er7" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarController" id="o6q-QP-er7" customClass="MainTabBarViewController" customModule="PetWatch" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TAA-yg-4BG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
