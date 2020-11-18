@@ -23,10 +23,9 @@ class NotificationTableViewController: UIViewController {
     
     func fetchNotifications() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        NotificationController.shared.fetchNotifications(uid: uid) { (success) in
+        NotificationController.shared.fetchNotifications(userUid: uid) { (success) in
             switch success {
             case true:
-                print(success)
                 self.tableView.reloadData()
             case false:
                 print("error")
@@ -40,15 +39,13 @@ class NotificationTableViewController: UIViewController {
 extension NotificationTableViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(NotificationController.shared.notifications.count)
         return NotificationController.shared.notifications.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "notificationCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "notificationCell", for: indexPath) as? NotificationTableViewCell else { return UITableViewCell() }
         let notification = NotificationController.shared.notifications[indexPath.row]
-        cell.textLabel?.text = notification.title
-        cell.detailTextLabel?.text = notification.dateTime
+        cell.notification = notification
         return cell
     }
 }
