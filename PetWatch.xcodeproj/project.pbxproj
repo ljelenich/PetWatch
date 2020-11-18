@@ -95,7 +95,6 @@
 				6C42AFCD25630074005D7255 /* Controllers */,
 				6C2FE0922562F80800040F5A /* Views */,
 				6C2FE08D2562F7A800040F5A /* Resources */,
-				6C027F7F25645B3D0042A4A5 /* LoginSignupViewController.swift */,
 			);
 			path = PetWatch;
 			sourceTree = "<group>";
@@ -171,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				B60DBA0E25644ACD0086F676 /* EmailViewController.swift */,
+				6C027F7F25645B3D0042A4A5 /* LoginSignupViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
