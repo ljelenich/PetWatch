@@ -6,19 +6,32 @@
 //
 
 import UIKit
+import FirebaseAuth
 
-class PetListTableViewController: UITableViewController {
+class PetListTableViewController: UIViewController {
+
+    @IBOutlet weak var tableView: UITableView!
     
     //MARK: - Lifecycle Functions
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tableView.delegate = self
+        tableView.dataSource = self
+
     }
     
     //MARK: - Actions
     
     @IBAction func logOutButtonTapped(_ sender: Any) {
-        
+        do {
+            try Auth.auth().signOut()
+            
+        } catch let signOutErr {
+            print("Failed to sign out:", signOutErr)
+        }
+
     }
     
     @IBAction func addPetButtonTapped(_ sender: Any) {
@@ -28,35 +41,16 @@ class PetListTableViewController: UITableViewController {
     @IBAction func aspcaInfoButtonTapped(_ sender: Any) {
         
     }
+}
+
+extension PetListTableViewController: UITableViewDelegate, UITableViewDataSource {
     
-    // MARK: - Table view data source
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return PetController.shared.pets.count
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
     }
 
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
 
-        let petToDisplay = PetController.shared.pets[indexPath.row]
-        cell.textLabel?.text = petToDisplay.name
-        cell.detailTextLabel?.text = petToDisplay.breed
-        cell.imageView?.image = petToDisplay.profileImage
-
-        return cell
-    }
-
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
-    }
-
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
     }
 }

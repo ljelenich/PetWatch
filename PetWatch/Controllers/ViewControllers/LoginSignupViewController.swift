@@ -73,7 +73,7 @@ class LoginSignupViewController: UIViewController {
     
     func showPetListVC() {
         DispatchQueue.main.async {
-            let viewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabBarController") as UIViewController
+            let viewController: UITabBarController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
             viewController.modalPresentationStyle = .fullScreen
             self.present(viewController, animated: true)
         }
