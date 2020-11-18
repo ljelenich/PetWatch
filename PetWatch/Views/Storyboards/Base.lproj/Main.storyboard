@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -269,7 +269,7 @@
         <!--My Pets-->
         <scene sceneID="vAe-8N-MaG">
             <objects>
-                <viewController storyboardIdentifier="myPets" id="Z8K-Jx-yNu" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="myPets" id="Z8K-Jx-yNu" customClass="PetListTableViewController" customModule="PetWatch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fHa-ST-THP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -308,44 +308,50 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pet Emergency Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yl2-4z-UJb">
-                                <rect key="frame" x="8" y="757" width="206.5" height="21"/>
+                                <rect key="frame" x="8" y="765" width="206.5" height="13"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASPCA Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ni-ik-5BT">
-                                <rect key="frame" x="318" y="757" width="88" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEb-Bt-NHb">
+                                <rect key="frame" x="319" y="756.5" width="79" height="30"/>
+                                <state key="normal" title="ASPCA Info"/>
+                                <connections>
+                                    <action selector="aspcaInfoButtonTapped:" destination="Z8K-Jx-yNu" eventType="touchUpInside" id="E8P-IV-RKc"/>
+                                    <action selector="aspcaInfoButtonTapped:" destination="nYF-HT-XtW" eventType="touchUpInside" id="PmH-U4-Bxq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="H54-CL-cll"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="H54-CL-cll" firstAttribute="trailing" secondItem="0Ni-ik-5BT" secondAttribute="trailing" constant="8" id="DHu-wA-LB5"/>
+                            <constraint firstItem="H54-CL-cll" firstAttribute="trailing" secondItem="gEb-Bt-NHb" secondAttribute="trailing" constant="16" id="C3j-HA-izC"/>
                             <constraint firstItem="H54-CL-cll" firstAttribute="bottom" secondItem="Yl2-4z-UJb" secondAttribute="bottom" constant="35" id="EMv-m9-MMC"/>
                             <constraint firstItem="Yl2-4z-UJb" firstAttribute="leading" secondItem="H54-CL-cll" secondAttribute="leading" constant="8" id="HKd-3Y-LzP"/>
+                            <constraint firstItem="gEb-Bt-NHb" firstAttribute="centerY" secondItem="Yl2-4z-UJb" secondAttribute="centerY" id="R8G-zQ-41g"/>
                             <constraint firstItem="DMQ-9r-EVg" firstAttribute="leading" secondItem="H54-CL-cll" secondAttribute="leading" id="TGR-fA-klg"/>
-                            <constraint firstItem="0Ni-ik-5BT" firstAttribute="top" secondItem="DMQ-9r-EVg" secondAttribute="bottom" constant="8" id="UXS-EG-fGG"/>
                             <constraint firstItem="H54-CL-cll" firstAttribute="trailing" secondItem="DMQ-9r-EVg" secondAttribute="trailing" id="YfR-ME-OLd"/>
                             <constraint firstItem="H54-CL-cll" firstAttribute="bottom" secondItem="DMQ-9r-EVg" secondAttribute="bottom" constant="64" id="efz-3d-203"/>
                             <constraint firstItem="DMQ-9r-EVg" firstAttribute="top" secondItem="H54-CL-cll" secondAttribute="top" constant="8" id="hSi-w2-e90"/>
-                            <constraint firstItem="0Ni-ik-5BT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Yl2-4z-UJb" secondAttribute="trailing" constant="8" symbolic="YES" id="haU-tw-igi"/>
-                            <constraint firstItem="H54-CL-cll" firstAttribute="bottom" secondItem="0Ni-ik-5BT" secondAttribute="bottom" constant="35" id="l5O-WU-R8f"/>
-                            <constraint firstItem="Yl2-4z-UJb" firstAttribute="top" secondItem="DMQ-9r-EVg" secondAttribute="bottom" constant="8" id="sjv-v1-xyc"/>
+                            <constraint firstItem="Yl2-4z-UJb" firstAttribute="top" secondItem="DMQ-9r-EVg" secondAttribute="bottom" constant="16" id="sjv-v1-xyc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Pets" id="r8N-Sj-LOb">
-                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="aVN-BA-M9g"/>
+                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="aVN-BA-M9g">
+                            <connections>
+                                <action selector="logOutButtonTapped:" destination="Z8K-Jx-yNu" id="wfR-CX-tpE"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="NzC-HC-Xp9">
                             <connections>
+                                <action selector="addPetButtonTapped:" destination="Z8K-Jx-yNu" id="32X-GL-uKo"/>
                                 <segue destination="aEA-aa-N0F" kind="show" id="4u9-p9-fFN"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hgb-Ij-eIJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="nYF-HT-XtW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1373.913043478261" y="-861.16071428571422"/>
         </scene>
@@ -479,7 +485,7 @@
         <!--Add A Pet-->
         <scene sceneID="RN7-rQ-h9e">
             <objects>
-                <viewController id="aEA-aa-N0F" sceneMemberID="viewController">
+                <viewController id="aEA-aa-N0F" customClass="AddPetViewController" customModule="PetWatch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3Zk-Pm-Cp4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -809,8 +815,28 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add A Pet" id="2Kt-k7-4bO">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="F5K-Nr-eLp"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="F5K-Nr-eLp">
+                            <connections>
+                                <action selector="savePetButtonTapped:" destination="aEA-aa-N0F" id="25w-kF-s94"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="allergiesTextField" destination="2Tv-Oy-PqS" id="ysn-Uf-Km9"/>
+                        <outlet property="birthdayTextField" destination="0cF-sc-ItB" id="RNm-h0-r9g"/>
+                        <outlet property="breedTextField" destination="aDf-Qy-aEZ" id="aOO-IQ-tX1"/>
+                        <outlet property="colorTextField" destination="hHr-eB-52W" id="Ab0-GO-CE0"/>
+                        <outlet property="emergencyContactTextField" destination="Ezh-YW-z4C" id="1Ib-KF-tkI"/>
+                        <outlet property="genderTextField" destination="tp0-Ld-qrq" id="VsA-0B-mle"/>
+                        <outlet property="medicationsTextField" destination="tgx-Lo-7AA" id="EXJ-Kf-0fT"/>
+                        <outlet property="microchipTextField" destination="Anv-bK-PRc" id="UxI-Ke-Web"/>
+                        <outlet property="nameTextField" destination="puA-Xx-hRr" id="bYd-7q-dde"/>
+                        <outlet property="outsideScheduleTextField" destination="doV-mG-opv" id="LhB-lb-ndL"/>
+                        <outlet property="petTypeTextField" destination="B9d-ZS-cR3" id="NTg-d2-yLv"/>
+                        <outlet property="primaryFoodTextField" destination="fJa-Hd-S6y" id="Rlk-cD-Kcl"/>
+                        <outlet property="spayedNeuteredTextField" destination="Wrb-SL-uWr" id="pdp-Hs-fV2"/>
+                        <outlet property="vetNameAndPhoneTextField" destination="8eW-vP-vVu" id="RAI-0q-0cL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wkg-Gz-DrB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
