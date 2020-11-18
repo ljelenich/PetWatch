@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             guard let windowScene = (scene as? UIWindowScene) else { return }
                 window = UIWindow(windowScene: windowScene)
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "")
+                window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "tabBarController")
                 window?.makeKeyAndVisible()
             guard let _ = (scene as? UIWindowScene) else { return }
         }

@@ -77,8 +77,8 @@ class PetController {
                           let emergencyContact = dictionary["emergencyContact"] as? String,
                           let emergencyContactInfo = dictionary["emergencyContactInfo"] as? String,
                           let specialInstructions = dictionary["specialInstructions"] as? String else { return }
-                    let getPetInfo = Pet(name: name, gender: gender, petType: petType, breed: breed, color: color, birthday: birthday, outsideSchedule: outsideSchedule, primaryFood: primaryFood, servingSize: servingSize, snackFoods: snackFood, feedingSchedule: feedingSchedule, allergies: allergies, spayedNeutered: spayedNeutered, microchip: microchip, vetName: vetName, vetContactInfo: vetContactInfo, medications: medications, medicationInstructions: medicationInstructions, emergencyContact: emergencyContact, emergencyContactInfo: emergencyContactInfo, specialInstructions: specialInstructions)
-                    self.pets.append(getPetInfo)
+//                    let getPetInfo = Pet(name: name, gender: gender, petType: petType, breed: breed, color: color, birthday: birthday, outsideSchedule: outsideSchedule, primaryFood: primaryFood, servingSize: servingSize, snackFoods: snackFood, feedingSchedule: feedingSchedule, allergies: allergies, spayedNeutered: spayedNeutered, microchip: microchip, vetName: vetName, vetContactInfo: vetContactInfo, medications: medications, medicationInstructions: medicationInstructions, emergencyContact: emergencyContact, emergencyContactInfo: emergencyContactInfo, specialInstructions: specialInstructions)
+//                    self.pets.append(getPetInfo)
                     completion(true)
                 }
             }

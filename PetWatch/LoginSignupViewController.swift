@@ -42,7 +42,7 @@ class LoginSignupViewController: UIViewController {
             switch result {
             case .success(_):
                 print("success")
-//                self.showPetListVC()
+                self.showPetListVC()
             case .failure(let error):
                 print(error.localizedDescription)
                 Auth.auth().handleFirebaseErrors(error: error, vc: self)
@@ -60,7 +60,7 @@ class LoginSignupViewController: UIViewController {
                 Auth.auth().handleFirebaseErrors(error: error, vc: self)
             } else {
                 print("success")
-//                self.showPetListVC()
+                self.showPetListVC()
             }
         }
     }
@@ -73,8 +73,7 @@ class LoginSignupViewController: UIViewController {
     
     func showPetListVC() {
         DispatchQueue.main.async {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            guard let viewController = storyboard.instantiateInitialViewController() else { return }
+            let viewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabBarController") as UIViewController
             viewController.modalPresentationStyle = .fullScreen
             self.present(viewController, animated: true)
         }
