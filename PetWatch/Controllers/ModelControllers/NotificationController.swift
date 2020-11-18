@@ -15,13 +15,12 @@ class NotificationController {
     var notifications: [Notification] = []
     
     func createNotification(uid: String, alertUid: String, title: String, dateTime: String, completion: @escaping (Result<Bool, Error>) -> Void) {
-        firestoreDB.document(uid).collection("alerts").document(alertUid).setData(["uid": uid, "title": title, "dateTime": dateTime])
+        firestoreDB.document(alertUid).setData(["uid": uid, "title": title, "dateTime": dateTime])
         completion(.success(true))
     }
     
-    func fetchNotifications(uid: String, completion: @escaping (Bool) -> Void) {
-        
-        firestoreDB.document(uid).collection("alerts").getDocuments() { (snapshot, error) in
+    func fetchNotifications(userUid: String, completion: @escaping (Bool) -> Void) {
+        firestoreDB.whereField("uid", isEqualTo: userUid).getDocuments() { (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
                 completion(false)
