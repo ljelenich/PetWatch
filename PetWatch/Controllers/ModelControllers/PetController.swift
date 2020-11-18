@@ -23,7 +23,7 @@ class PetController {
     var pets: [Pet] = []
     
     //MARK: - CRUD Functions
-    func createPet(name: String, profileImage: UIImage?, gender: String, petType: String, breed: String, color: String, birthday: String, outsideSchedule: String, primaryFood: String, servingSize: String, snackFoods: String, feedingSchedule: String, allergies: String, spayedNeutered: Bool, microchip: String, vetName: String, vetContactInfo: String, medications: String, medicationInstructions: String, emergencyContact: String, emergencyContactInfo: String, specialInstructions: String, completion: @escaping (Result<Bool, UserError>) -> Void) {
+    func createPet(name: String, profileImage: UIImage?, gender: String, petType: String, breed: String, color: String, birthday: String, outsideSchedule: String, primaryFood: String, allergies: String, spayedNeutered: Bool, microchip: String, vetName: String, medications: String, emergencyContact: String, specialInstructions: String, completion: @escaping (Result<Bool, UserError>) -> Void) {
         
         guard let image = profileImage else { return }
         guard let uploadData = image.jpegData(compressionQuality: 0.3) else { return }
@@ -41,7 +41,7 @@ class PetController {
 
             storageRef.downloadURL(completion: { (downloadURL, err) in
                 guard let uid =  Auth.auth().currentUser?.uid, let url = downloadURL else { return }
-                self.firestoreDB.collection("pets").document(uid).setData(["name": name, "ownerUid": uid, "profileImageUrl": url, "gender": gender, "petType": petType, "breed": breed, "color": color, "birthday": birthday, "outsideSchedule": outsideSchedule, "primaryFood": primaryFood, "servingSize": servingSize, "snackFoods": snackFoods, "feedingSchedule": feedingSchedule, "allergies": allergies, "spayedNeutered": spayedNeutered, "microchip": microchip, "vetName": vetName, "vetContactInfo": vetContactInfo, "medications": medications, "medicationInstructions": medicationInstructions, "emergencyContact": emergencyContact, "emergencyContactInfo": emergencyContactInfo, "specialInstructions": specialInstructions])
+                self.firestoreDB.collection("pets").document(uid).setData(["name": name, "ownerUid": uid, "profileImageUrl": url, "gender": gender, "petType": petType, "breed": breed, "color": color, "birthday": birthday, "outsideSchedule": outsideSchedule, "primaryFood": primaryFood, "allergies": allergies, "spayedNeutered": spayedNeutered, "microchip": microchip, "vetName": vetName, "medications": medications, "emergencyContact": emergencyContact, "specialInstructions": specialInstructions])
                 completion(.success(true))
             })
         })
@@ -64,44 +64,38 @@ class PetController {
                           let birthday = dictionary["birthday"] as? String,
                           let outsideSchedule = dictionary["outsideSchedule"] as? String,
                           let primaryFood = dictionary["primaryFood"] as? String,
-                          let servingSize = dictionary["servingSize"] as? String,
-                          let snackFood = dictionary["snackFood"] as? String,
-                          let feedingSchedule = dictionary["feedingSchedule"] as? String,
                           let allergies = dictionary["allergies"] as? String,
                           let spayedNeutered = dictionary["spayedNeutered"] as? Bool,
                           let microchip = dictionary["microchip"] as? String,
                           let vetName = dictionary["vetName"] as? String,
-                          let vetContactInfo = dictionary["vetContactInfo"] as? String,
                           let medications = dictionary["medications"] as? String,
-                          let medicationInstructions = dictionary["medicationInstructions"] as? String,
                           let emergencyContact = dictionary["emergencyContact"] as? String,
-                          let emergencyContactInfo = dictionary["emergencyContactInfo"] as? String,
                           let specialInstructions = dictionary["specialInstructions"] as? String else { return }
-//                    let getPetInfo = Pet(name: name, gender: gender, petType: petType, breed: breed, color: color, birthday: birthday, outsideSchedule: outsideSchedule, primaryFood: primaryFood, servingSize: servingSize, snackFoods: snackFood, feedingSchedule: feedingSchedule, allergies: allergies, spayedNeutered: spayedNeutered, microchip: microchip, vetName: vetName, vetContactInfo: vetContactInfo, medications: medications, medicationInstructions: medicationInstructions, emergencyContact: emergencyContact, emergencyContactInfo: emergencyContactInfo, specialInstructions: specialInstructions)
-//                    self.pets.append(getPetInfo)
+                    let getPetInfo = Pet(name: name, gender: gender, petType: petType, breed: breed, color: color, birthday: birthday, outsideSchedule: outsideSchedule, primaryFood: primaryFood, allergies: allergies, spayedNeutered: spayedNeutered, microchip: microchip, vetName: vetName, medications: medications, emergencyContact: emergencyContact, specialInstructions: specialInstructions)
+                    self.pets.append(getPetInfo)
                     completion(true)
                 }
             }
         }
     }
     
-    func fetchPetWithUID(uid: String, completion: @escaping (User) -> ()) {
-        firestoreDB.collection("pets").document(uid).getDocument { (document, error) in
-            if let document = document, document.exists {
-                guard let dictionary = document.data() else { return }
-                guard let name = dictionary["name"] as? String else { return }
-                guard let email = dictionary["email"] as? String else { return }
-//                let user = User(name: name, email: email)
-//                completion(user)
-            } else {
-                completion(error as! User)
-                print("Document does not exist")
-            }
-        }
-    }
+//    func fetchPetWithUID(uid: String, completion: @escaping (User) -> ()) {
+//        firestoreDB.collection("pets").document(uid).getDocument { (document, error) in
+//            if let document = document, document.exists {
+//                guard let dictionary = document.data() else { return }
+//                guard let name = dictionary["name"] as? String else { return }
+//                guard let email = dictionary["email"] as? String else { return }
+////                let user = User(name: name, email: email)
+////                completion(user)
+//            } else {
+//                completion(error as! User)
+//                print("Document does not exist")
+//            }
+//        }
+//    }
     
-    func updatePet(_ uid: String, name: String, gender: String, petType: String, breed: String, color: String, birthday: String, outsideSchedule: String, primaryFood: String, servingSize: String, snackFoods: String, feedingSchedule: String, allergies: String, spayedNeutered: Bool, microchip: String, vetName: String, vetContactInfo: String, medications: String, medicationInstructions: String, emergencyContact: String, emergencyContactInfo: String, specialInstructions: String, completion: @escaping (Result<Pet?, UserError>) -> Void) {
-        firestoreDB.collection("pets").document(uid).setData(["name": name, "ownerUid": uid, "gender": gender, "petType": petType, "breed": breed, "color": color, "birthday": birthday, "outsideSchedule": outsideSchedule, "primaryFood": primaryFood, "servingSize": servingSize, "snackFoods": snackFoods, "feedingSchedule": feedingSchedule, "allergies": allergies, "spayedNeutered": spayedNeutered, "microchip": microchip, "vetName": vetName, "vetContactInfo": vetContactInfo, "medications": medications, "medicationInstructions": medicationInstructions, "emergencyContact": emergencyContact, "emergencyContactInfo": emergencyContactInfo, "specialInstructions": specialInstructions], merge: true) { error in
+    func updatePet(_ uid: String, name: String, gender: String, petType: String, breed: String, color: String, birthday: String, outsideSchedule: String, primaryFood: String, allergies: String, spayedNeutered: Bool, microchip: String, vetName: String, medications: String, emergencyContactInfo: String, specialInstructions: String, completion: @escaping (Result<Pet?, UserError>) -> Void) {
+        firestoreDB.collection("pets").document(uid).setData(["name": name, "ownerUid": uid, "gender": gender, "petType": petType, "breed": breed, "color": color, "birthday": birthday, "outsideSchedule": outsideSchedule, "primaryFood": primaryFood, "allergies": allergies, "spayedNeutered": spayedNeutered, "microchip": microchip, "vetName": vetName, "medications": medications, "emergencyContactInfo": emergencyContactInfo, "specialInstructions": specialInstructions], merge: true) { error in
             if let error = error {
                 print("There was an error updating data: \(error.localizedDescription)")
                 completion(.failure(.fbUserError(error)))
