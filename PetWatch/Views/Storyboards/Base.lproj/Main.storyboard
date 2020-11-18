@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="W2G-hA-gGW" detailTextLabel="lq1-fz-nJL" rowHeight="66" style="IBUITableViewCellStyleSubtitle" id="Ng4-d5-QPO">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="petSelectCell" textLabel="W2G-hA-gGW" detailTextLabel="lq1-fz-nJL" rowHeight="66" style="IBUITableViewCellStyleSubtitle" id="Ng4-d5-QPO">
                                 <rect key="frame" x="0.0" y="28" width="414" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ng4-d5-QPO" id="Pqb-CY-2nO">
@@ -41,7 +41,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Nc9-zS-1B4" kind="show" id="w39-fl-4KF"/>
+                                    <segue destination="Nc9-zS-1B4" kind="show" identifier="toPetEmailVC" id="w39-fl-4KF"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -51,7 +51,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Select A Pet" id="hML-k0-vDc">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="info.circle" catalog="system" id="IdJ-Qz-o84"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="info.circle" catalog="system" id="IdJ-Qz-o84">
+                            <connections>
+                                <action selector="infoButtonTapped:" destination="bi4-t3-fDu" id="5Yn-Qf-Juh"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b5U-zR-o5L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -368,7 +372,6 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="NzC-HC-Xp9">
                             <connections>
-                                <action selector="addPetButtonTapped:" destination="Z8K-Jx-yNu" id="32X-GL-uKo"/>
                                 <segue destination="aEA-aa-N0F" kind="show" id="4u9-p9-fFN"/>
                             </connections>
                         </barButtonItem>
