@@ -29,6 +29,8 @@
 		B60DBA33256586A00086F676 /* AddPetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60DBA32256586A00086F676 /* AddPetViewController.swift */; };
 		E2E56EF5CA398A87133EE9D1 /* Pods_PetWatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB9849F1F7E54CFAB752E4E /* Pods_PetWatch.framework */; };
 		FA6755322563476E00A8EEF9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6755312563476E00A8EEF9 /* User.swift */; };
+		FAEBFCCF2565C52B00E988C5 /* PetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEBFCCE2565C52B00E988C5 /* PetDetailViewController.swift */; };
+		FAEBFCD12565C65500E988C5 /* PetSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEBFCD02565C65500E988C5 /* PetSelectTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,8 @@
 		B60DBA2F2565865B0086F676 /* PetListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetListTableViewController.swift; sourceTree = "<group>"; };
 		B60DBA32256586A00086F676 /* AddPetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPetViewController.swift; sourceTree = "<group>"; };
 		FA6755312563476E00A8EEF9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FAEBFCCE2565C52B00E988C5 /* PetDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDetailViewController.swift; sourceTree = "<group>"; };
+		FAEBFCD02565C65500E988C5 /* PetSelectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetSelectTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +201,8 @@
 				6C33D993256593BF00E63BDF /* NotificationViewController.swift */,
 				6C33D99B256594D100E63BDF /* NotificationTableViewController.swift */,
 				6C33D9B72565A0C500E63BDF /* LaunchScreenCopyViewController.swift */,
+				FAEBFCCE2565C52B00E988C5 /* PetDetailViewController.swift */,
+				FAEBFCD02565C65500E988C5 /* PetSelectTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -338,8 +344,10 @@
 				B60DBA00256343E60086F676 /* Pet.swift in Sources */,
 				6C0C1A6F2563198000CAD171 /* UserError.swift in Sources */,
 				6C33D994256593BF00E63BDF /* NotificationViewController.swift in Sources */,
+				FAEBFCD12565C65500E988C5 /* PetSelectTableViewController.swift in Sources */,
 				B60DBA302565865B0086F676 /* PetListTableViewController.swift in Sources */,
 				6C0C1A7325631DD100CAD171 /* PetController.swift in Sources */,
+				FAEBFCCF2565C52B00E988C5 /* PetDetailViewController.swift in Sources */,
 				FA6755322563476E00A8EEF9 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
