@@ -15,6 +15,14 @@ class NotificationViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var titleTextField: UITextField!
     
+    var alertUid: String?
+    var notification: Notification? {
+        didSet {
+            alertUid = notification?.alertUid
+            titleTextField.text = notification?.title
+        }
+    }
+    
     //MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +34,7 @@ class NotificationViewController: UIViewController {
         scheduleNotification(date: datePicker.date)
         dismiss()
     }
-    @IBAction func datePickerPressed(_ sender: Any) {
-    }
+    
     @IBAction func disableButtonTapped(_ sender: Any) {
         print("disable Pressed")
     }

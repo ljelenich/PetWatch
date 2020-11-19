@@ -20,3 +20,9 @@ class Notification {
         self.dateTime = dateTime
     }
 }
+
+extension Notification: Equatable {
+    static func == (lhs: Notification, rhs: Notification) -> Bool {
+        return lhs.alertUid == rhs.alertUid
+    }
+}

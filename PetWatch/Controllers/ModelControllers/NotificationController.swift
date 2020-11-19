@@ -7,36 +7,61 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseAuth
 
 class NotificationController {
     
+    //MARK: - Shared Instance
     static let shared = NotificationController()
+    
+    //MARK: - Firebase Firestore Database
     let firestoreDB = Firestore.firestore().collection("notifications")
+    
+    //MARK: - Source of truth
     var notifications: [Notification] = []
     
-    func createNotification(userUid: String, alertUid: String, title: String, dateTime: String, completion: @escaping (Result<Bool, Error>) -> Void) {
-        firestoreDB.document(alertUid).setData(["userUid": userUid, "title": title, "dateTime": dateTime])
-        completion(.success(true))
+    //MARK: - CRUD Functions
+    func createNotification(userUid: String, alertUid: String, title: String, dateTime: String, completion: @escaping (Result<Bool, NotificationError>) -> Void) {
+        firestoreDB.document(alertUid).setData(["userUid": userUid, "alertUid": alertUid, "title": title, "dateTime": dateTime]) { error in
+            if let error = error {
+                print("Error writing document: \(error)")
+                completion(.failure(.fbUserError(error)))
+            } else {
+                print("Document successfully written!")
+                completion(.success(true))
+            }
+        }
     }
     
     func fetchNotifications(userUid: String, completion: @escaping (Bool) -> Void) {
+        guard let userUid = Auth.auth().currentUser?.uid else { return }
         firestoreDB.whereField("userUid", isEqualTo: userUid).getDocuments() { (snapshot, error) in
-            if let error = error {
-                print(error.localizedDescription)
+            if (error != nil) == true {
+                print("error")
                 completion(false)
-            }
-            if let snapshot = snapshot {
-                for document in snapshot.documents {
+            } else {
+                for document in snapshot!.documents {
                     let dictionary = document.data()
-                    guard let userUid = dictionary["userUid"] as? String,
-                          let alertUid = dictionary["alertUid"] as? String,
-                          let title = dictionary["title"] as? String,
-                          let dateTime = dictionary["dateTime"] as? String else { return }
+                    let userUid = dictionary["userUid"] as? String ?? ""
+                    let alertUid = dictionary["alertUid"] as? String ?? ""
+                    let title = dictionary["title"] as? String ?? ""
+                    let dateTime = dictionary["dateTime"] as? String ?? ""
                     let getNotifications = Notification(userUid: userUid, alertUid: alertUid, title: title, dateTime: dateTime)
                         self.notifications.append(getNotifications)
-                    print(getNotifications)
-                    completion(true)
                 }
+                completion(true)
+            }
+        }
+    }
+    
+    func deleteNotification(alertUid: String, completion: @escaping (Result<Bool, NotificationError>) -> Void) {
+        firestoreDB.document(alertUid).delete() { error in
+            if let error = error {
+                print("Error removing document: \(error)")
+                completion(.failure(.fbUserError(error)))
+            } else {
+                print("Document successfully removed!")
+                completion(.success(true))
             }
         }
     }
