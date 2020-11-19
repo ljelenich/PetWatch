@@ -17,6 +17,7 @@ class PetSelectTableViewController: UITableViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViews()
     }
     
     // MARK: - Actions
@@ -27,10 +28,15 @@ class PetSelectTableViewController: UITableViewController {
     
     // MARK: - Helper Methods
     func presentInfoAlertController() {
-        let guideAlertController = UIAlertController(title: "Select a Pet", message: "Here you can select one of your pets to send their information to a sitter or caretaker.", preferredStyle: .alert)
+        let infoAlertController = UIAlertController(title: "Select a Pet", message: "Here you can select one of your pets to send their information to a sitter or caretaker.", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { (_) in }
-        guideAlertController.addAction(okAction)
-        present(guideAlertController, animated: true)
+        infoAlertController.addAction(okAction)
+        present(infoAlertController, animated: true)
+    }
+    
+    func setupViews() {
+        // let pet = pets
+        // fetch pets
     }
 
     // MARK: - Table view data source
