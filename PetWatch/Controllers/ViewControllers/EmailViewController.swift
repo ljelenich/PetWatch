@@ -27,7 +27,6 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
     @IBOutlet weak var medicationsTextLabel: UILabel!
     @IBOutlet weak var emergencyContactTextLabel: UILabel!
     @IBOutlet weak var specialInstructionsTextLabel: UILabel!
-    @IBOutlet weak var emailAddressTextField: UITextField!
     @IBOutlet weak var additionalInfoTextView: UITextView!
     
     //MARK: - Properties

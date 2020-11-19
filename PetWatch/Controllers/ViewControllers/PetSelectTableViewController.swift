@@ -35,7 +35,6 @@ class PetSelectTableViewController: UITableViewController {
     }
     
     func setupViews() {
-        // let pet = pets
         // fetch pets
     }
 
