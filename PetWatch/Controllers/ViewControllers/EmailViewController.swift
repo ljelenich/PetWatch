@@ -17,6 +17,23 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
     
     //MARK: - Outlets
     
+
+    @IBOutlet weak var profileImageView: UIImage?
+    @IBOutlet weak var nameTextLabel: UILabel!
+    @IBOutlet weak var genderTextLabel: UILabel!
+    @IBOutlet weak var petTypeTextLabel: UILabel!
+    @IBOutlet weak var breedTextLabel: UILabel!
+    @IBOutlet weak var colorTextLabel: UILabel!
+    @IBOutlet weak var birthdayTextLabel: UILabel!
+    @IBOutlet weak var primaryFoodTextLabel: UILabel!
+    @IBOutlet weak var allergiesTextLabel: UILabel!
+    @IBOutlet weak var spayedNeuteredTextLabel: UILabel!
+    @IBOutlet weak var microchipTextLabel: UILabel!
+    @IBOutlet weak var vetNameTextLabel: UILabel!
+    @IBOutlet weak var medicationsTextLabel: UILabel!
+    @IBOutlet weak var emergencyContactTextLabel: UILabel!
+    @IBOutlet weak var specialInstructionsTextLabel: UILabel!
+
     @IBOutlet weak var additionalInfoTextView: UITextView!
     
     //MARK: - Properties
