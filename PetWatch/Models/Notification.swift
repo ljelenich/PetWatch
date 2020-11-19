@@ -8,13 +8,13 @@
 import Foundation
 
 class Notification {
-    let uid: String
+    let userUid: String
     let alertUid: String
     let title: String
     let dateTime: String
 
-    init(uid: String, alertUid: String, title: String, dateTime: String) {
-        self.uid = uid
+    init(userUid: String, alertUid: String, title: String, dateTime: String) {
+        self.userUid = userUid
         self.alertUid = alertUid
         self.title = title
         self.dateTime = dateTime

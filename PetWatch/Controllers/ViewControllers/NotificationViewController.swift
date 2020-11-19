@@ -65,8 +65,8 @@ class NotificationViewController: UIViewController {
     }
     
     func saveToFirestore(alertUid: String, title: String, description: String, dateTime: String) {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        NotificationController.shared.createNotification(uid: uid, alertUid: alertUid, title: title, dateTime: dateTime) { (result) in
+        guard let userUid = Auth.auth().currentUser?.uid else { return }
+        NotificationController.shared.createNotification(userUid: userUid, alertUid: alertUid, title: title, dateTime: dateTime) { (result) in
             switch result {
             case .success(_):
                 print("success")
