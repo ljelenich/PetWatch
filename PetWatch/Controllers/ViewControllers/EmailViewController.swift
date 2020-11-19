@@ -10,8 +10,14 @@ import MessageUI
 
 class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate {
     
+    struct Row {
+        var title: String
+        var value: String
+    }
+    
     //MARK: - Outlets
     
+
     @IBOutlet weak var profileImageView: UIImage?
     @IBOutlet weak var nameTextLabel: UILabel!
     @IBOutlet weak var genderTextLabel: UILabel!
@@ -27,11 +33,14 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
     @IBOutlet weak var medicationsTextLabel: UILabel!
     @IBOutlet weak var emergencyContactTextLabel: UILabel!
     @IBOutlet weak var specialInstructionsTextLabel: UILabel!
+
     @IBOutlet weak var additionalInfoTextView: UITextView!
     
     //MARK: - Properties
     
     var pets: Pet?
+    
+    private var rows: [Row] = []
     
     //MARK: - Lifecycle Functions
 
@@ -69,7 +78,7 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
             mail.mailComposeDelegate = self
             mail.setToRecipients([""])
             mail.setSubject("Pet Information")
-            mail.setMessageBody("</br>Name: \(pets?.name ?? "Name")</br></br>Gender: \(pets?.gender ?? "Gender")</br></br>Pet Type: \(pets?.petType ?? "Pet Type")</br></br>Breed: \(pets?.breed ?? "Breed")</br></br>Color: \(pets?.color ?? "Color")</br></br>Birthday: \(pets?.birthday ?? "Birthday")</br></br>Primary Food: \(pets?.primaryFood ?? "Primary Food")</br></br>Allergies: \(pets?.allergies ?? "Allergies")</br></br>Spayed/Neutered: \(pets?.spayedNeutered.description ?? "Spayed/Neutered")</br></br>Microchip: \(pets?.microchip ?? "Microchip")</br></br>Vet Name & Contact: \(pets?.vetName ?? "Vet Name")</br></br>Medications: \(pets?.medications ?? "Medications")</br></br>Emergency Contact: \(pets?.emergencyContact ?? "Emergency Contact")</br></br>Special Instructions: \(pets?.specialInstructions ?? "Special Instructions")</br></br>Additional Info: \(additionalInfoTextView.text ?? "Additional Info")", isHTML: true)
+            mail.setMessageBody("</br>Name: \(pets?.name ?? "")</br></br>Gender: \(pets?.gender ?? "")</br></br>Pet Type: \(pets?.petType ?? "")</br></br>Breed: \(pets?.breed ?? "")</br></br>Color: \(pets?.color ?? "")</br></br>Birthday: \(pets?.birthday ?? "")</br></br>Outside Schedule: \(pets?.outsideSchedule ?? "")</br></br>Primary Food: \(pets?.primaryFood ?? "")</br></br>Allergies: \(pets?.allergies ?? "")</br></br>Spayed/Neutered: \(pets?.spayedNeutered.description ?? "")</br></br>Microchip: \(pets?.microchip ?? "")</br></br>Vet Name & Contact: \(pets?.vetName ?? "")</br></br>Medications: \(pets?.medications ?? "")</br></br>Emergency Contact: \(pets?.emergencyContact ?? "")</br></br>Additional Info: \(additionalInfoTextView.text ?? "")", isHTML: true)
             let image = pets?.profileImage
             if image == nil {
                 print("No image to send")
@@ -80,6 +89,25 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
         } else {
             print("Device cannot send email.")
         }
+    }
+    
+    private func createRows() {
+        rows = [
+            Row(title: "Name:", value: pets?.name ?? ""),
+            Row(title: "Gender:", value: pets?.gender ?? ""),
+            Row(title: "Pet Type:", value: pets?.petType ?? ""),
+            Row(title: "Breed:", value: pets?.breed ?? ""),
+            Row(title: "Color:", value: pets?.color ?? ""),
+            Row(title: "Birthday:", value: pets?.birthday ?? ""),
+            Row(title: "Outside Schedule:", value: pets?.outsideSchedule ?? ""),
+            Row(title: "Primary Food:", value: pets?.primaryFood ?? ""),
+            Row(title: "Allergies:", value: pets?.allergies ?? ""),
+            Row(title: "Spayed/Neutered:", value: pets?.spayedNeutered.description ?? ""),
+            Row(title: "Microchip:", value: pets?.microchip ?? ""),
+            Row(title: "Vet Name:", value: pets?.vetName ?? ""),
+            Row(title: "Medications:", value: pets?.medications ?? ""),
+            Row(title: "Emergency Contact:", value: pets?.emergencyContact ?? "")
+        ]
     }
 }
 
@@ -145,5 +173,25 @@ extension UIResponder {
 
     @objc private func trap() {
         UIResponder.responder = self
+    }
+}
+
+//MARK: - Table View Extension
+
+extension EmailViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return rows.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+        
+        let row = rows[indexPath.row]
+        cell.textLabel?.text = row.title
+        cell.detailTextLabel?.text = row.value
+        
+        return cell
     }
 }
