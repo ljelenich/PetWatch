@@ -148,7 +148,7 @@
         <!--Notification View Controller-->
         <scene sceneID="hg3-Zi-2Sf">
             <objects>
-                <viewController storyboardIdentifier="notificationVC" id="Z1E-Ag-kvI" customClass="NotificationViewController" customModule="PetWatch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Z1E-Ag-kvI" customClass="NotificationViewController" customModule="PetWatch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="u2k-L9-4Ci">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -905,9 +905,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="Z1E-Ag-kvI" kind="show" identifier="showNotification" id="nBd-mp-exA"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -928,9 +925,6 @@
             <point key="canvasLocation" x="1294" y="652"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="nBd-mp-exA"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar.badge.plus" catalog="system" width="128" height="108"/>
         <image name="info.circle" catalog="system" width="128" height="121"/>
