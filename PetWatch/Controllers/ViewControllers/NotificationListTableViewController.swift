@@ -69,9 +69,6 @@ class NotificationListTableViewController: UITableViewController {
         let notificationVC = stroyboard.instantiateViewController(identifier: "notificationVC") as! NotificationViewController
         notificationVC.notification = notification
         self.navigationController?.pushViewController(notificationVC, animated: true)
-//        self.navigationController?.present(notificationVC, animated: true)
-
-//        self.performSegue(withIdentifier: "showNotification", sender: self)
     }
     
 //    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

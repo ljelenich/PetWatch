@@ -48,7 +48,7 @@ class NotificationController {
                     let title = dictionary["title"] as? String ?? ""
                     let dateTime = dictionary["dateTime"] as? String ?? ""
                     let getNotifications = Notification(userUid: userUid, alertUid: alertUid, title: title, dateTime: dateTime)
-                        self.notifications.append(getNotifications)
+                    self.notifications.append(getNotifications)
                 }
                 completion(true)
             }

@@ -55,7 +55,8 @@ class PetListTableViewController: UIViewController {
             switch success {
             case true:
                 DispatchQueue.main.async {
-                    self.updateViews()
+                    self.tableView.reloadData()
+//                    self.updateViews()
                     self.refresh.endRefreshing()
                 }
             case false:
@@ -87,7 +88,7 @@ class PetListTableViewController: UIViewController {
     
     @objc func updateViews() {
         fetchPets()
-//        PetController.shared.pets.removeAll()
+        PetController.shared.pets.removeAll()
     }
 }
 
