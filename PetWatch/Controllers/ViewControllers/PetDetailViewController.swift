@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseStorage
 
 class PetDetailViewController: UIViewController {
     
@@ -41,7 +43,7 @@ class PetDetailViewController: UIViewController {
     
     // MARK: - Helper Methods
     func setupViews() {
-        petNameLabel.text = pets?.name
+        petNameLabel.text = PetController.shared.pet?.name
     }
     
     private func createRows() {
