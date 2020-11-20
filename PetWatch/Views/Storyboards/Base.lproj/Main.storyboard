@@ -148,7 +148,7 @@
         <!--Notification View Controller-->
         <scene sceneID="hg3-Zi-2Sf">
             <objects>
-                <viewController id="Z1E-Ag-kvI" customClass="NotificationViewController" customModule="PetWatch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="notificationVC" id="Z1E-Ag-kvI" customClass="NotificationViewController" customModule="PetWatch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="u2k-L9-4Ci">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
