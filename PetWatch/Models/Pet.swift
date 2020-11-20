@@ -48,3 +48,9 @@ class Pet {
         self.emergencyContact = emergencyContact
     }
 }
+
+extension Pet: Equatable {
+    static func == (lhs: Pet, rhs: Pet) -> Bool {
+        return lhs.petUid == rhs.petUid
+    }
+}
