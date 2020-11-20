@@ -49,14 +49,21 @@ class NotificationListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "showNotification", sender: self)
+        let notification = NotificationController.shared.notifications[indexPath.row]
+        let notificationVC = NotificationViewController()
+        notificationVC.alertUid = notification.alertUid
+        navigationController?.pushViewController(notificationVC, animated: true)
+//        self.performSegue(withIdentifier: "showNotification", sender: self)
     }
     
-    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showNotification" {
-            
-        }
-    }
+//    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if segue.identifier == "showNotification" {
+//            guard let indexPath = tableView.indexPathForSelectedRow,
+//                let destinationVC = segue.destination as? NotificationViewController else {return}
+//            let notification = NotificationController.shared.notifications[indexPath.row]
+//            destinationVC.notification = notification
+//        }
+//    }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
