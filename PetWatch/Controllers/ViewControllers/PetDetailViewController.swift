@@ -26,6 +26,7 @@ class PetDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createRows()
+        setupViews()
     }
     
     // MARK: - Actions
@@ -39,9 +40,8 @@ class PetDetailViewController: UIViewController {
     }
     
     // MARK: - Helper Methods
-    
-    func setupView() {
-        
+    func setupViews() {
+        petNameLabel.text = pets?.name
     }
     
     private func createRows() {
