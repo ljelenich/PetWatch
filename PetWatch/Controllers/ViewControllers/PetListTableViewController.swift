@@ -9,17 +9,29 @@ import UIKit
 import FirebaseAuth
 
 class PetListTableViewController: UIViewController {
+    
+    //MARK: - Outlets
 
     @IBOutlet weak var tableView: UITableView!
     
+    //MARK: - Properties
+    
+    var refresh: UIRefreshControl = UIRefreshControl()
+    
     //MARK: - Lifecycle Functions
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        refreshViews()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        updateViews()
+//        updateViews()
         fetchPets()
+//        refreshViews()
+//        loadPets()
     }
     
     //MARK: - Actions
@@ -42,17 +54,40 @@ class PetListTableViewController: UIViewController {
         PetController.shared.fetchPets(userUid: userUid) { (success) in
             switch success {
             case true:
-                self.updateViews()
+                DispatchQueue.main.async {
+                    self.updateViews()
+                    self.refresh.endRefreshing()
+                }
             case false:
                 print("error")
             }
         }
     }
     
-    func updateViews() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+    func refreshViews() {
+        refresh.attributedTitle = NSAttributedString(string: "Pull to see updated pet list.")
+        refresh.addTarget(self, action: #selector(updateViews), for: .valueChanged)
+        tableView.addSubview(refresh)
+    }
+    
+//    func loadPets() {
+//        guard let userUid = UserController.shared.user?.uid else { return }
+//        PetController.shared.fetchPets(userUid: userUid) { (result) in
+//            switch result {
+//            case true:
+//                DispatchQueue.main.async {
+//                    self.updateViews()
+//                }
+//                self.refresh.endRefreshing()
+//            case false:
+//                print("Could not update views.")
+//            }
+//        }
+//    }
+    
+    @objc func updateViews() {
+        fetchPets()
+//        PetController.shared.pets.removeAll()
     }
 }
 
