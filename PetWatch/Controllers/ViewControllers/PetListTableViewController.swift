@@ -16,14 +16,13 @@ class PetListTableViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         tableView.delegate = self
         tableView.dataSource = self
-
+        updateViews()
+        fetchPets()
     }
     
     //MARK: - Actions
-    
     @IBAction func logOutButtonTapped(_ sender: Any) {
         do {
             try Auth.auth().signOut()
@@ -36,6 +35,25 @@ class PetListTableViewController: UIViewController {
     @IBAction func aspcaInfoButtonTapped(_ sender: Any) {
         UIApplication.shared.open(URL(string: "https://www.aspca.org/pet-care/general-pet-care/emergency-care-your-pet")! as URL, options: [:], completionHandler: nil)
     }
+    
+    //MARK: - Helper Functions
+    func fetchPets() {
+        guard let userUid = Auth.auth().currentUser?.uid else { return }
+        PetController.shared.fetchPets(userUid: userUid) { (success) in
+            switch success {
+            case true:
+                self.updateViews()
+            case false:
+                print("error")
+            }
+        }
+    }
+    
+    func updateViews() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
 }
 
 extension PetListTableViewController: UITableViewDelegate, UITableViewDataSource {
@@ -45,19 +63,30 @@ extension PetListTableViewController: UITableViewDelegate, UITableViewDataSource
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "petCell", for: indexPath)
         let petToDisplay = PetController.shared.pets[indexPath.row]
-        UITableViewCell().textLabel?.text = petToDisplay.name
-        UITableViewCell().detailTextLabel?.text = petToDisplay.breed
-        UITableViewCell().imageView?.image = petToDisplay.profileImage
+        cell.textLabel?.text = petToDisplay.name
+        cell.detailTextLabel?.text = petToDisplay.breed
+        cell.imageView?.image = petToDisplay.profileImage
         
-        return UITableViewCell()
-
+        return cell
     }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            let petToDelete = PetController.shared.pets[indexPath.row]
+            guard let indexOfPet = PetController.shared.pets.firstIndex(of: petToDelete) else { return }
+            PetController.shared.deletePet(petUid: petToDelete.petUid) { (result) in
+                switch result {
+                case .success(_):
+                    PetController.shared.pets.remove(at: indexOfPet)
+                    DispatchQueue.main.async {
+                        self.tableView.deleteRows(at: [indexPath], with: .fade)
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
         }
     }
     

@@ -23,28 +23,30 @@ class PetController {
     var pets: [Pet] = []
     
     //MARK: - CRUD Functions
-    func createPet(userUid: String, name: String, profileImage: UIImage?, gender: String, petType: String, breed: String, color: String, birthday: String, outsideSchedule: String, primaryFood: String, allergies: String, spayedNeutered: Bool, microchip: String, vetName: String, medications: String, emergencyContact: String, specialInstructions: String, completion: @escaping (Result<Bool, UserError>) -> Void) {
+    func createPet(userUid: String, name: String, gender: String, petType: String, breed: String, color: String, birthday: String, outsideSchedule: String, primaryFood: String, allergies: String, spayedNeutered: Bool, microchip: String, vetName: String, medications: String, emergencyContact: String, specialInstructions: String, completion: @escaping (Result<Bool, UserError>) -> Void) {
         
-        guard let image = profileImage else { return }
-        guard let uploadData = image.jpegData(compressionQuality: 0.3) else { return }
+//        guard let image = profileImage else { return }
+//        guard let uploadData = image.jpegData(compressionQuality: 0.3) else { return }
 
         let filename = UUID().uuidString
+        self.firestoreDB.document(filename).setData(["userUid": userUid, "petUid": filename, "name": name, "gender": gender, "petType": petType, "breed": breed, "color": color, "birthday": birthday, "outsideSchedule": outsideSchedule, "primaryFood": primaryFood, "allergies": allergies, "spayedNeutered": spayedNeutered, "microchip": microchip, "vetName": vetName, "medications": medications, "emergencyContact": emergencyContact, "specialInstructions": specialInstructions])
+        completion(.success(true))
         
-        let storageRef = Storage.storage().reference().child("profileImage").child(filename)
-        storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
-            
-            if let error = error {
-                print("There was an error uploading image data: \(error.localizedDescription)")
-                completion(.failure(.fbUserError(error)))
-                return
-            }
-
-            storageRef.downloadURL(completion: { (downloadURL, err) in
-                guard let userUid =  Auth.auth().currentUser?.uid, let url = downloadURL else { return }
-                self.firestoreDB.document(filename).setData(["userUid": userUid, "petUid": filename, "name": name, "profileImageUrl": url, "gender": gender, "petType": petType, "breed": breed, "color": color, "birthday": birthday, "outsideSchedule": outsideSchedule, "primaryFood": primaryFood, "allergies": allergies, "spayedNeutered": spayedNeutered, "microchip": microchip, "vetName": vetName, "medications": medications, "emergencyContact": emergencyContact, "specialInstructions": specialInstructions])
-                completion(.success(true))
-            })
-        })
+//        let storageRef = Storage.storage().reference().child("profileImage").child(filename)
+//        storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
+//
+//            if let error = error {
+//                print("There was an error uploading image data: \(error.localizedDescription)")
+//                completion(.failure(.fbUserError(error)))
+//                return
+//            }
+//
+//            storageRef.downloadURL(completion: { (downloadURL, err) in
+//                guard let userUid =  Auth.auth().currentUser?.uid, let url = downloadURL else { return }
+//                self.firestoreDB.document(filename).setData(["userUid": userUid, "petUid": filename, "name": name, "profileImageUrl": url, "gender": gender, "petType": petType, "breed": breed, "color": color, "birthday": birthday, "outsideSchedule": outsideSchedule, "primaryFood": primaryFood, "allergies": allergies, "spayedNeutered": spayedNeutered, "microchip": microchip, "vetName": vetName, "medications": medications, "emergencyContact": emergencyContact, "specialInstructions": specialInstructions])
+//                completion(.success(true))
+//            })
+//        })
     }
     
     func fetchPets(userUid: String, completion: @escaping (Bool) -> Void) {
@@ -93,12 +95,13 @@ class PetController {
         }
     }
     
-    func deletePetData(_ petUid: String, completion: @escaping (Result<Bool, UserError>) -> Void) {
+    func deletePet(petUid: String, completion: @escaping (Result<Bool, PetError>) -> Void) {
         firestoreDB.document(petUid).delete() { error in
             if let error = error {
-                print("There was an error deleting user: \(error.localizedDescription)")
+                print("Error removing document: \(error)")
                 completion(.failure(.fbUserError(error)))
             } else {
+                print("Document successfully removed!")
                 completion(.success(true))
             }
         }

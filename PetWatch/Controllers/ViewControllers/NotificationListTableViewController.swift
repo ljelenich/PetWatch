@@ -11,16 +11,10 @@ import FirebaseFirestore
 
 class NotificationListTableViewController: UITableViewController {
 
-    var notifications: [Notification] = []
-    let firestoreDB = Firestore.firestore().collection("notifications")
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        updateViews()
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchNotifications()
+        updateViews()
     }
     
     func fetchNotifications() {
@@ -55,10 +49,13 @@ class NotificationListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let notification = NotificationController.shared.notifications[indexPath.row]
-        let notificationVC = NotificationViewController()
-        notificationVC.alertUid = notification.alertUid
-        navigationController?.pushViewController(notificationVC, animated: true)
+        self.performSegue(withIdentifier: "showNotification", sender: self)
+    }
+    
+    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showNotification" {
+            
+        }
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -78,7 +75,6 @@ class NotificationListTableViewController: UITableViewController {
                     print(error.localizedDescription)
                 }
             }
-//            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 }

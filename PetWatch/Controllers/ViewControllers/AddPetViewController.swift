@@ -6,11 +6,11 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class AddPetViewController: UIViewController {
     
     //MARK: - Outlets
-    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var genderTextField: UITextField!
     @IBOutlet weak var petTypeTextField: UITextField!
@@ -33,8 +33,27 @@ class AddPetViewController: UIViewController {
     }
     
     //MARK: - Actions
-    
     @IBAction func savePetButtonTapped(_ sender: Any) {
-        
+        savePet()
+    }
+    
+    //MARK: - Helper Functions
+    func savePet() {
+        guard let userUid = Auth.auth().currentUser?.uid else { return }
+        guard let name = nameTextField.text else { return }
+        PetController.shared.createPet(userUid: userUid, name: name, gender: "", petType: "", breed: "", color: "", birthday: "", outsideSchedule: "", primaryFood: "", allergies: "", spayedNeutered: true, microchip: "", vetName: "", medications: "", emergencyContact: "", specialInstructions: "") { (result) in
+            switch result {
+            case .success(_):
+                self.dismiss()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func dismiss() {
+        DispatchQueue.main.async {
+            self.navigationController?.popToRootViewController(animated: true)
+        }
     }
 }
