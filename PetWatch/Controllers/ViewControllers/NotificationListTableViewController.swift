@@ -11,10 +11,22 @@ import FirebaseFirestore
 
 class NotificationListTableViewController: UITableViewController {
 
+    var refresh: UIRefreshControl = UIRefreshControl()
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        refreshViews()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchNotifications()
-        updateViews()
+    }
+    
+    func refreshViews() {
+        refresh.attributedTitle = NSAttributedString(string: "Pull see update")
+        refresh.addTarget(self, action: #selector(updateViews), for: .valueChanged)
+        tableView?.addSubview(refresh)
     }
     
     func fetchNotifications() {
@@ -22,17 +34,20 @@ class NotificationListTableViewController: UITableViewController {
         NotificationController.shared.fetchNotifications(userUid: userUid) { (success) in
             switch success {
             case true:
-                self.updateViews()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.refresh.endRefreshing()
+                }
+                
             case false:
                 print("error")
             }
         }
     }
     
-    func updateViews() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+    @objc func updateViews() {
+        fetchNotifications()
+        NotificationController.shared.notifications.removeAll()
     }
     
     // MARK: - Table view data source
@@ -50,9 +65,12 @@ class NotificationListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let notification = NotificationController.shared.notifications[indexPath.row]
-        let notificationVC = NotificationViewController()
-        notificationVC.alertUid = notification.alertUid
-        navigationController?.pushViewController(notificationVC, animated: true)
+        let stroyboard = UIStoryboard(name: "Main", bundle: nil)
+        let notificationVC = stroyboard.instantiateViewController(identifier: "notificationVC") as! NotificationViewController
+        notificationVC.notification = notification
+        self.navigationController?.pushViewController(notificationVC, animated: true)
+//        self.navigationController?.present(notificationVC, animated: true)
+
 //        self.performSegue(withIdentifier: "showNotification", sender: self)
     }
     
@@ -60,8 +78,8 @@ class NotificationListTableViewController: UITableViewController {
 //        if segue.identifier == "showNotification" {
 //            guard let indexPath = tableView.indexPathForSelectedRow,
 //                let destinationVC = segue.destination as? NotificationViewController else {return}
-//            let notification = NotificationController.shared.notifications[indexPath.row]
-//            destinationVC.notification = notification
+//            let notification = NotificationController.shared.notifications[indexPath.row].alertUid
+//            destinationVC.alertUid = notification
 //        }
 //    }
     
