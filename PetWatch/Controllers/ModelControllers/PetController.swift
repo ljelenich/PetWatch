@@ -23,13 +23,13 @@ class PetController {
     var pets: [Pet] = []
     
     //MARK: - CRUD Functions
-    func createPet(userUid: String, name: String, gender: String, petType: String, breed: String, color: String, birthday: String, outsideSchedule: String, primaryFood: String, allergies: String, spayedNeutered: Bool, microchip: String, vetName: String, medications: String, emergencyContact: String, specialInstructions: String, completion: @escaping (Result<Bool, UserError>) -> Void) {
+    func createPet(userUid: String, name: String, gender: String, petType: String, breed: String, color: String, birthday: String, outsideSchedule: String, primaryFood: String, allergies: String, spayedNeutered: Bool, microchip: String, vetName: String, medications: String, emergencyContact: String, completion: @escaping (Result<Bool, UserError>) -> Void) {
         
 //        guard let image = profileImage else { return }
 //        guard let uploadData = image.jpegData(compressionQuality: 0.3) else { return }
 
         let filename = UUID().uuidString
-        self.firestoreDB.document(filename).setData(["userUid": userUid, "petUid": filename, "name": name, "gender": gender, "petType": petType, "breed": breed, "color": color, "birthday": birthday, "outsideSchedule": outsideSchedule, "primaryFood": primaryFood, "allergies": allergies, "spayedNeutered": spayedNeutered, "microchip": microchip, "vetName": vetName, "medications": medications, "emergencyContact": emergencyContact, "specialInstructions": specialInstructions])
+        self.firestoreDB.document(filename).setData(["userUid": userUid, "petUid": filename, "name": name, "gender": gender, "petType": petType, "breed": breed, "color": color, "birthday": birthday, "outsideSchedule": outsideSchedule, "primaryFood": primaryFood, "allergies": allergies, "spayedNeutered": spayedNeutered, "microchip": microchip, "vetName": vetName, "medications": medications, "emergencyContact": emergencyContact])
         completion(.success(true))
         
 //        let storageRef = Storage.storage().reference().child("profileImage").child(filename)
