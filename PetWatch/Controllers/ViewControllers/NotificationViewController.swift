@@ -19,14 +19,13 @@ class NotificationViewController: UIViewController {
     var notification: Notification? {
         didSet {
             alertUid = notification?.alertUid
-            titleTextField.text = notification?.title
         }
     }
     
     //MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print(alertUid)
     }
     
     //MARK: - Actions
@@ -88,5 +87,4 @@ class NotificationViewController: UIViewController {
             self.navigationController?.popToRootViewController(animated: true)
         }
     }
-
 }

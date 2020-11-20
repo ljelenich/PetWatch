@@ -18,6 +18,7 @@ class NotificationController {
     let firestoreDB = Firestore.firestore().collection("notifications")
     
     //MARK: - Source of truth
+    var notification: Notification?
     var notifications: [Notification] = []
     
     //MARK: - CRUD Functions
@@ -50,6 +51,19 @@ class NotificationController {
                         self.notifications.append(getNotifications)
                 }
                 completion(true)
+            }
+        }
+    }
+    
+    func updateNotification(petUid: String, title: String, dateTime: String, completion: @escaping (Result<Notification?, NotificationError>) -> Void) {
+        firestoreDB.document(petUid).setData([title: title, dateTime: dateTime], merge: true) { error in
+            if let error = error {
+                print("There was an error updating data: \(error.localizedDescription)")
+                completion(.failure(.fbUserError(error)))
+                return
+            } else {
+                completion(.success(self.notification))
+                print("Document successfully updated")
             }
         }
     }
