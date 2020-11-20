@@ -25,6 +25,7 @@ class AddPetViewController: UIViewController {
     @IBOutlet weak var vetNameAndPhoneTextField: UITextField!
     @IBOutlet weak var medicationsTextField: UITextField!
     @IBOutlet weak var emergencyContactTextField: UITextField!
+    @IBOutlet weak var spayedSegmentedControl: UISegmentedControl!
     
     //MARK: - Lifecycle Functions
 

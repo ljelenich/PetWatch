@@ -18,23 +18,30 @@ class PetDetailViewController: UIViewController {
     @IBOutlet weak var petNameLabel: UILabel!
     @IBOutlet weak var petImageView: UIImageView!
     
-  
+    // MARK: - Properties
     var pets: Pet?
-    
     private var rows: [Row] = []
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        createRows()
     }
     
     // MARK: - Actions
     @IBAction func petImageButtonTapped(_ sender: Any) {
+        
     }
 
-    
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    }
+    
+    // MARK: - Helper Methods
+    
+    func setupView() {
+        
     }
     
     private func createRows() {
