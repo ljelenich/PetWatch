@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class PetSelectTableViewController: UITableViewController {
 
@@ -17,7 +18,8 @@ class PetSelectTableViewController: UITableViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
+        fetchPets()
+        updateViews()
     }
     
     // MARK: - Actions
@@ -34,8 +36,22 @@ class PetSelectTableViewController: UITableViewController {
         present(infoAlertController, animated: true)
     }
     
-    func setupViews() {
-        // fetch pets
+    func fetchPets() {
+        guard let userUid = Auth.auth().currentUser?.uid else { return }
+        PetController.shared.fetchPets(userUid: userUid) { (success) in
+            switch success {
+            case true:
+                self.updateViews()
+            case false:
+                print("error")
+            }
+        }
+    }
+    
+    func updateViews() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 
     // MARK: - Table view data source
