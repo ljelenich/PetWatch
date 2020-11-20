@@ -19,6 +19,10 @@ class PetListTableViewController: UIViewController {
     var refresh: UIRefreshControl = UIRefreshControl()
     
     //MARK: - Lifecycle Functions
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        refreshViews()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,11 +62,6 @@ class PetListTableViewController: UIViewController {
                 print("error")
             }
         }
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        refreshViews()
     }
     
     func refreshViews() {
