@@ -18,14 +18,15 @@ class NotificationViewController: UIViewController {
     var alertUid: String?
     var notification: Notification? {
         didSet {
-            alertUid = notification?.alertUid
+            guard let notification = notification else { return }
+            alertUid = notification.alertUid
         }
     }
     
     //MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(alertUid)
+        titleTextField.text = notification?.title
     }
     
     //MARK: - Actions
