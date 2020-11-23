@@ -28,6 +28,7 @@ class NotificationViewController: UIViewController {
     //MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        requestPermissionForNotifications()
         titleTextField.text = notification?.title
     }
     
