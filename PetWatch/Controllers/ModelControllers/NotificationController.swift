@@ -55,8 +55,8 @@ class NotificationController {
         }
     }
     
-    func updateNotification(petUid: String, title: String, dateTime: String, completion: @escaping (Result<Notification?, NotificationError>) -> Void) {
-        firestoreDB.document(petUid).setData([title: title, dateTime: dateTime], merge: true) { error in
+    func updateNotification(alertUid: String, title: String, dateTime: String, completion: @escaping (Result<Notification?, NotificationError>) -> Void) {
+        self.firestoreDB.document(alertUid).setData(["title": title, "dateTime": dateTime], merge: true) { error in
             if let error = error {
                 print("There was an error updating data: \(error.localizedDescription)")
                 completion(.failure(.fbUserError(error)))
@@ -66,8 +66,9 @@ class NotificationController {
                 print("Document successfully updated")
             }
         }
+
     }
-    
+
     func deleteNotification(alertUid: String, completion: @escaping (Result<Bool, NotificationError>) -> Void) {
         firestoreDB.document(alertUid).delete() { error in
             if let error = error {
