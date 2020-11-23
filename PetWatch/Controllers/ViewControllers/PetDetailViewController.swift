@@ -43,7 +43,7 @@ class PetDetailViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction func petImageButtonTapped(_ sender: Any) {
-        
+        presentImagePickerActionSheet()
     }
 
 
