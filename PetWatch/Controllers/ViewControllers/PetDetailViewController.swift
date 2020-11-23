@@ -43,9 +43,8 @@ class PetDetailViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction func petImageButtonTapped(_ sender: Any) {
-        
+        presentImagePickerActionSheet()
     }
-
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

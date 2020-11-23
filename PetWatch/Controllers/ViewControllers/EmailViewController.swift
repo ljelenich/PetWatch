@@ -66,12 +66,12 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
             mail.setToRecipients([""])
             mail.setSubject("Pet Information")
             mail.setMessageBody("</br>Name: \(pets?.name ?? "")</br></br>Gender: \(pets?.gender ?? "")</br></br>Pet Type: \(pets?.petType ?? "")</br></br>Breed: \(pets?.breed ?? "")</br></br>Color: \(pets?.color ?? "")</br></br>Birthday: \(pets?.birthday ?? "")</br></br>Outside Schedule: \(pets?.outsideSchedule ?? "")</br></br>Primary Food: \(pets?.primaryFood ?? "")</br></br>Allergies: \(pets?.allergies ?? "")</br></br>Spayed/Neutered: \(pets?.spayedNeutered.description ?? "")</br></br>Microchip: \(pets?.microchip ?? "")</br></br>Vet Name & Contact: \(pets?.vetName ?? "")</br></br>Medications: \(pets?.medications ?? "")</br></br>Emergency Contact: \(pets?.emergencyContact ?? "")</br></br>Additional Info: \(additionalInfoTextView.text ?? "")", isHTML: true)
-            let image = pets?.profileImage
-            if image == nil {
-                print("No image to send")
-            } else {
-                mail.addAttachmentData(image!.jpegData(compressionQuality: CGFloat(0.5))!, mimeType: "jpeg", fileName: "petphoto.jpeg")
-            }
+//            let image = pets?.profileImage
+//            if image == nil {
+//                print("No image to send")
+//            } else {
+//                mail.addAttachmentData(image!.jpegData(compressionQuality: CGFloat(0.5))!, mimeType: "jpeg", fileName: "petphoto.jpeg")
+//            }
             present(mail, animated: true, completion: nil)
         } else {
             print("Device cannot send email.")
