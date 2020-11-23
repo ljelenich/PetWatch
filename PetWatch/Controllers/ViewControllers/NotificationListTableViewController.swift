@@ -70,16 +70,7 @@ class NotificationListTableViewController: UITableViewController {
         notificationVC.notification = notification
         self.navigationController?.pushViewController(notificationVC, animated: true)
     }
-    
-//    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if segue.identifier == "showNotification" {
-//            guard let indexPath = tableView.indexPathForSelectedRow,
-//                let destinationVC = segue.destination as? NotificationViewController else {return}
-//            let notification = NotificationController.shared.notifications[indexPath.row].alertUid
-//            destinationVC.alertUid = notification
-//        }
-//    }
-    
+
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let notificationToDelete = NotificationController.shared.notifications[indexPath.row]

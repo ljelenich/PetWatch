@@ -16,6 +16,7 @@ class NotificationViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     
     var alertUid: String?
+    var setDateTime: String?
     var notification: Notification? {
         didSet {
             guard let notification = notification else { return }
@@ -27,6 +28,7 @@ class NotificationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         titleTextField.text = notification?.title
+        datePicker.preferredDatePickerStyle = .automatic
     }
     
     //MARK: - Actions
