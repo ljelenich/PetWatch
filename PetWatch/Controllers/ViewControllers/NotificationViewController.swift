@@ -8,6 +8,7 @@
 import UIKit
 import UserNotifications
 import FirebaseAuth
+import FirebaseFirestore
 
 class NotificationViewController: UIViewController {
 
@@ -16,6 +17,7 @@ class NotificationViewController: UIViewController {
     @IBOutlet weak var datePickerTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
     
+    var isExistinNotification: Bool?
     var alertUid: String?
     var setDateTime: String?
     var notification: Notification? {
@@ -29,6 +31,7 @@ class NotificationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         requestPermissionForNotifications()
+        setupTextFields()
         titleTextField.text = notification?.title
     }
     
@@ -39,12 +42,42 @@ class NotificationViewController: UIViewController {
     }
     
     @IBAction func disableButtonTapped(_ sender: Any) {
-        print("disable Pressed")
+        guard let alertUid = notification?.alertUid else { return }
+        UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
+           var identifiers: [String] = []
+           for notification:UNNotificationRequest in notificationRequests {
+               if notification.identifier == alertUid {
+                  identifiers.append(notification.identifier)
+               }
+           }
+           UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+            NotificationController.shared.deleteNotification(alertUid: alertUid) { (success) in
+                switch success {
+                case .success(_):
+                    print("success")
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+            self.dismiss()
+        }
     }
+    
     @IBAction func datePickerPressed(_ sender: Any) {
+        let date = datePicker.date
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .medium
+        setDateTime = formatter.string(from: date)
+        datePickerTextField.text = setDateTime
     }
     
     //MARK: - Helper Functions
+    func setupTextFields() {
+        titleTextField.text = notification?.title
+        datePickerTextField.text = notification?.dateTime
+    }
+
     func requestPermissionForNotifications() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (success, error) in
             if success {
@@ -73,12 +106,30 @@ class NotificationViewController: UIViewController {
         formatter.dateStyle = .medium
         formatter.timeStyle = .medium
         let setDateTime = formatter.string(from: date)
-        saveToFirestore(alertUid: identifier, title: title, description: description, dateTime: setDateTime)
+
+        if ((notification?.alertUid.isEmpty) != nil) {
+            guard let alertUid = notification?.alertUid else { return }
+            updateToFirestore(alertUid: alertUid, title: title, dateTime: setDateTime)
+        } else {
+            saveToFirestore(alertUid: identifier, title: title, dateTime: setDateTime)
+        }
+        
     }
     
-    func saveToFirestore(alertUid: String, title: String, description: String, dateTime: String) {
+    func saveToFirestore(alertUid: String, title: String, dateTime: String) {
         guard let userUid = Auth.auth().currentUser?.uid else { return }
         NotificationController.shared.createNotification(userUid: userUid, alertUid: alertUid, title: title, dateTime: dateTime) { (result) in
+            switch result {
+            case .success(_):
+                print("success")
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func updateToFirestore(alertUid: String, title: String, dateTime: String) {
+        NotificationController.shared.updateNotification(alertUid: alertUid, title: title, dateTime: dateTime) { (result) in
             switch result {
             case .success(_):
                 print("success")
