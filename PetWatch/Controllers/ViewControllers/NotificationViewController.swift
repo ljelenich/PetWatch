@@ -13,6 +13,7 @@ class NotificationViewController: UIViewController {
 
     //MARK: - Outlets
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var datePickerTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
     
     var alertUid: String?
@@ -28,7 +29,6 @@ class NotificationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         titleTextField.text = notification?.title
-        datePicker.preferredDatePickerStyle = .automatic
     }
     
     //MARK: - Actions
@@ -39,6 +39,8 @@ class NotificationViewController: UIViewController {
     
     @IBAction func disableButtonTapped(_ sender: Any) {
         print("disable Pressed")
+    }
+    @IBAction func datePickerPressed(_ sender: Any) {
     }
     
     //MARK: - Helper Functions

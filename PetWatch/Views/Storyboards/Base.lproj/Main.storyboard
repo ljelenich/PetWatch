@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="o6q-QP-er7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="o6q-QP-er7">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -161,22 +160,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="0Lk-sa-Kr3">
-                                <rect key="frame" x="16" y="152" width="382" height="216"/>
+                                <rect key="frame" x="10" y="218" width="394" height="216"/>
                                 <connections>
-                                    <action selector="datePickerPressed:" destination="Z1E-Ag-kvI" eventType="valueChanged" id="R0x-VG-3IO"/>
+                                    <action selector="datePickerPressed:" destination="Z1E-Ag-kvI" eventType="valueChanged" id="mss-cR-0Ps"/>
                                 </connections>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SvM-GF-b51">
-                                <rect key="frame" x="64" y="434" width="286" height="30"/>
+                                <rect key="frame" x="20" y="459" width="374" height="45"/>
                                 <color key="backgroundColor" systemColor="systemRedColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="3md-N4-ioY"/>
+                                </constraints>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Disable Alert"/>
                                 <connections>
-                                    <action selector="disableButtonTapped:" destination="Z1E-Ag-kvI" eventType="touchUpInside" id="Y3A-ge-M3L"/>
+                                    <action selector="disableButtonTapped:" destination="Z1E-Ag-kvI" eventType="touchUpInside" id="dbK-ZX-QoY"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uTl-pn-5ja">
-                                <rect key="frame" x="16" y="392" width="382" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uTl-pn-5ja">
+                                <rect key="frame" x="10" y="108" width="394" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="hCZ-mb-RWu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Data and time" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uEI-8p-zzy">
+                                <rect key="frame" x="10" y="163" width="394" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="O4W-0l-05T"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -184,17 +197,18 @@
                         <viewLayoutGuide key="safeArea" id="lNo-np-0Fe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="lNo-np-0Fe" firstAttribute="trailing" secondItem="SvM-GF-b51" secondAttribute="trailing" constant="64" id="0pb-Zt-T1o"/>
-                            <constraint firstItem="uTl-pn-5ja" firstAttribute="top" secondItem="0Lk-sa-Kr3" secondAttribute="bottom" constant="16" id="2dK-AS-rzJ"/>
-                            <constraint firstItem="SvM-GF-b51" firstAttribute="leading" secondItem="lNo-np-0Fe" secondAttribute="leading" constant="64" id="J0e-Ih-T2F"/>
-                            <constraint firstItem="lNo-np-0Fe" firstAttribute="trailing" secondItem="uTl-pn-5ja" secondAttribute="trailing" constant="16" id="KYB-sB-20N"/>
-                            <constraint firstItem="lNo-np-0Fe" firstAttribute="trailing" secondItem="0Lk-sa-Kr3" secondAttribute="trailing" constant="16" id="Zce-IG-QAl"/>
-                            <constraint firstItem="0Lk-sa-Kr3" firstAttribute="top" secondItem="lNo-np-0Fe" secondAttribute="top" constant="64" id="eiY-VJ-3VL"/>
-                            <constraint firstItem="SvM-GF-b51" firstAttribute="top" secondItem="uTl-pn-5ja" secondAttribute="bottom" constant="16" id="hlA-sE-zgJ"/>
-                            <constraint firstItem="0Lk-sa-Kr3" firstAttribute="leading" secondItem="lNo-np-0Fe" secondAttribute="leading" constant="16" id="ilz-Je-DMH"/>
-                            <constraint firstItem="0Lk-sa-Kr3" firstAttribute="centerX" secondItem="lNo-np-0Fe" secondAttribute="centerX" id="kqw-c2-dLU"/>
-                            <constraint firstItem="uTl-pn-5ja" firstAttribute="leading" secondItem="lNo-np-0Fe" secondAttribute="leading" constant="16" id="pJo-9s-NQ2"/>
-                            <constraint firstItem="SvM-GF-b51" firstAttribute="centerX" secondItem="lNo-np-0Fe" secondAttribute="centerX" id="pZP-zw-xRd"/>
+                            <constraint firstItem="uTl-pn-5ja" firstAttribute="top" secondItem="lNo-np-0Fe" secondAttribute="top" constant="20" id="BZ2-El-b17"/>
+                            <constraint firstItem="uEI-8p-zzy" firstAttribute="top" secondItem="uTl-pn-5ja" secondAttribute="bottom" constant="10" id="D9j-Ym-69I"/>
+                            <constraint firstItem="SvM-GF-b51" firstAttribute="leading" secondItem="lNo-np-0Fe" secondAttribute="leading" constant="20" id="Dya-Ni-jjo"/>
+                            <constraint firstItem="lNo-np-0Fe" firstAttribute="trailing" secondItem="uEI-8p-zzy" secondAttribute="trailing" constant="10" id="JI6-GQ-h9s"/>
+                            <constraint firstItem="0Lk-sa-Kr3" firstAttribute="leading" secondItem="lNo-np-0Fe" secondAttribute="leading" constant="10" id="NzP-QQ-Hoe"/>
+                            <constraint firstItem="lNo-np-0Fe" firstAttribute="trailing" secondItem="0Lk-sa-Kr3" secondAttribute="trailing" constant="10" id="Pko-xU-F0Q"/>
+                            <constraint firstItem="lNo-np-0Fe" firstAttribute="trailing" secondItem="SvM-GF-b51" secondAttribute="trailing" constant="20" id="RnS-Wt-8Id"/>
+                            <constraint firstItem="SvM-GF-b51" firstAttribute="top" secondItem="0Lk-sa-Kr3" secondAttribute="bottom" constant="25" id="Tci-LE-XYs"/>
+                            <constraint firstItem="0Lk-sa-Kr3" firstAttribute="top" secondItem="uEI-8p-zzy" secondAttribute="bottom" constant="10" id="iv2-Nw-uVn"/>
+                            <constraint firstItem="uTl-pn-5ja" firstAttribute="leading" secondItem="lNo-np-0Fe" secondAttribute="leading" constant="10" id="o7l-2H-hPW"/>
+                            <constraint firstItem="lNo-np-0Fe" firstAttribute="trailing" secondItem="uTl-pn-5ja" secondAttribute="trailing" constant="10" id="qya-rX-W4A"/>
+                            <constraint firstItem="uEI-8p-zzy" firstAttribute="leading" secondItem="lNo-np-0Fe" secondAttribute="leading" constant="10" id="yI4-Ak-LQJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8gO-hS-cmg">
@@ -205,13 +219,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="datePicker" destination="0Lk-sa-Kr3" id="3RJ-Jj-fKP"/>
-                        <outlet property="titleTextField" destination="uTl-pn-5ja" id="xTB-QJ-jvk"/>
+                        <outlet property="datePicker" destination="0Lk-sa-Kr3" id="LkV-4f-MU1"/>
+                        <outlet property="datePickerTextField" destination="uEI-8p-zzy" id="jzH-jn-W0W"/>
+                        <outlet property="titleTextField" destination="uTl-pn-5ja" id="QVw-D5-t3W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uGF-If-nei" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2177" y="656"/>
+            <point key="canvasLocation" x="2062" y="652"/>
         </scene>
         <!--My Pets-->
         <scene sceneID="vAe-8N-MaG">
