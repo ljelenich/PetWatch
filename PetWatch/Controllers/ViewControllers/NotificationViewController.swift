@@ -32,6 +32,7 @@ class NotificationViewController: UIViewController {
         super.viewDidLoad()
         requestPermissionForNotifications()
         setupTextFields()
+        titleTextField.text = notification?.title
     }
     
     //MARK: - Actions
