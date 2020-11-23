@@ -39,8 +39,6 @@ class AddPetViewController: UIViewController {
     
     //MARK: - Helper Functions
     func savePet() {
-
-=======
 //<<<<<<< HEAD
 //        guard let userUid = Auth.auth().currentUser?.uid else { return }
 //        guard let name = nameTextField.text else { return }
