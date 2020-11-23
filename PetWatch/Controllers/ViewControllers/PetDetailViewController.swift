@@ -24,6 +24,7 @@ class PetDetailViewController: UIViewController {
     @IBOutlet weak var petNameLabel: UILabel!
     @IBOutlet weak var petImageView: UIImageView!
     @IBOutlet weak var selectImageButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
     
     
     // MARK: - Properties
@@ -34,6 +35,8 @@ class PetDetailViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
         createRows()
         setupViews()
     }
@@ -71,8 +74,6 @@ class PetDetailViewController: UIViewController {
             Row(title: "Emergency Contact:", value: pets?.emergencyContact ?? "")
         ]
     }
-
-
 }
 
 extension PetDetailViewController: UITableViewDelegate, UITableViewDataSource {
@@ -82,8 +83,7 @@ extension PetDetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // change identifier
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "petDetailsCell", for: indexPath)
         
         let row = rows[indexPath.row]
         cell.textLabel?.text = row.title
