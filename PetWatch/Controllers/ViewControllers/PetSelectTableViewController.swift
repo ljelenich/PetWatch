@@ -9,24 +9,17 @@ import UIKit
 import FirebaseAuth
 
 class PetSelectTableViewController: UITableViewController {
-
-    // MARK: - Outlets
-    
-    // MARK: - Properties
-    var pets: [Pet?] = []
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchPets()
-        updateViews()
     }
     
     // MARK: - Actions
     @IBAction func infoButtonTapped(_ sender: Any) {
         presentInfoAlertController()
     }
-    
     
     // MARK: - Helper Methods
     func presentInfoAlertController() {
@@ -41,40 +34,41 @@ class PetSelectTableViewController: UITableViewController {
         PetController.shared.fetchPets(userUid: userUid) { (success) in
             switch success {
             case true:
-                self.updateViews()
+                print("pets fetched")
+//                self.updateViews()
             case false:
                 print("error")
             }
         }
     }
     
-    func updateViews() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
+//    func updateViews() {
+//        DispatchQueue.main.async {
+//            self.tableView.reloadData()
+//        }
+//    }
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pets.count
+        return PetController.shared.pets.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "petSelectCell", for: indexPath)
-        cell.detailTextLabel?.text = PetController.shared.pet?.petType
-        cell.textLabel?.text = PetController.shared.pet?.name
+        let petToDisplay = PetController.shared.pets[indexPath.row]
+        cell.detailTextLabel?.text = petToDisplay.breed
+        cell.textLabel?.text = petToDisplay.name
 
         return cell
     }
 
-
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPetEmailVC" {
-            let destinationVC = segue.destination as! EmailViewController
+            let destinationVC = segue.destination as? EmailViewController
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
-            let petToEmail = pets[indexPath.row]
-            destinationVC.pets = petToEmail
+            let petToEmail = PetController.shared.pets[indexPath.row]
+            destinationVC?.pets = petToEmail
         }
     }
 

@@ -16,24 +16,8 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
     }
     
     //MARK: - Outlets
-    
 
-    @IBOutlet weak var profileImageView: UIImage?
-    @IBOutlet weak var nameTextLabel: UILabel!
-    @IBOutlet weak var genderTextLabel: UILabel!
-    @IBOutlet weak var petTypeTextLabel: UILabel!
-    @IBOutlet weak var breedTextLabel: UILabel!
-    @IBOutlet weak var colorTextLabel: UILabel!
-    @IBOutlet weak var birthdayTextLabel: UILabel!
-    @IBOutlet weak var primaryFoodTextLabel: UILabel!
-    @IBOutlet weak var allergiesTextLabel: UILabel!
-    @IBOutlet weak var spayedNeuteredTextLabel: UILabel!
-    @IBOutlet weak var microchipTextLabel: UILabel!
-    @IBOutlet weak var vetNameTextLabel: UILabel!
-    @IBOutlet weak var medicationsTextLabel: UILabel!
-    @IBOutlet weak var emergencyContactTextLabel: UILabel!
-    @IBOutlet weak var specialInstructionsTextLabel: UILabel!
-
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var additionalInfoTextView: UITextView!
     
     //MARK: - Properties
@@ -46,6 +30,9 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
+        createRows()
         dismissKeyboardOnTap()
     }
     
@@ -186,8 +173,7 @@ extension EmailViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // change identifier
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "petEmailCell", for: indexPath)
         
         let row = rows[indexPath.row]
         cell.textLabel?.text = row.title

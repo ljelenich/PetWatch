@@ -28,10 +28,7 @@ class PetListTableViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-//        updateViews()
         fetchPets()
-//        refreshViews()
-//        loadPets()
     }
     
     //MARK: - Actions
@@ -56,7 +53,6 @@ class PetListTableViewController: UIViewController {
             case true:
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
-//                    self.updateViews()
                     self.refresh.endRefreshing()
                 }
             case false:
@@ -71,26 +67,13 @@ class PetListTableViewController: UIViewController {
         tableView.addSubview(refresh)
     }
     
-//    func loadPets() {
-//        guard let userUid = UserController.shared.user?.uid else { return }
-//        PetController.shared.fetchPets(userUid: userUid) { (result) in
-//            switch result {
-//            case true:
-//                DispatchQueue.main.async {
-//                    self.updateViews()
-//                }
-//                self.refresh.endRefreshing()
-//            case false:
-//                print("Could not update views.")
-//            }
-//        }
-//    }
-    
     @objc func updateViews() {
         fetchPets()
         PetController.shared.pets.removeAll()
     }
 }
+
+//MARK: - Table View Entension
 
 extension PetListTableViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -125,12 +108,14 @@ extension PetListTableViewController: UITableViewDelegate, UITableViewDataSource
             }
         }
     }
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        
-//    }
-//    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        
-//    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showPetDetail" {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                guard let destinationVC = segue.destination as? PetDetailViewController else { return }
+                let petToSend = PetController.shared.pets[indexPath.row]
+                destinationVC.pets = petToSend
+            }
+        }
+    }
 }
