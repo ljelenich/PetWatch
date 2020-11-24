@@ -36,7 +36,6 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
         setupViews()
         createRows()
         dismissKeyboardOnTap()
-        additionalInfoTextView.placeholder = " Add additional notes here"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,6 +57,7 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
     //MARK: - Helper Methods
     
     func setupViews() {
+        additionalInfoTextView.placeholder = "Add additional directions or information here"
         self.tableView.backgroundColor = UIColor(named: "lightGreyColor")
         self.view.backgroundColor = UIColor(named: "lightGreyColor")
         self.additionalInfoTextView.backgroundColor = UIColor(named: "lightGreyColor")

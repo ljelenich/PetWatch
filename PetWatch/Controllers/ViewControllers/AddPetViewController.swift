@@ -40,8 +40,8 @@ class AddPetViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(named: "lightGreyColor")
         populateFields()
+        setupViews()
     }
     
     //MARK: - Actions
@@ -51,6 +51,9 @@ class AddPetViewController: UIViewController {
     }
     
     //MARK: - Helper Functions
+    func setupViews() {
+        self.view.backgroundColor = UIColor(named: "lightGreyColor")
+    }
     
     func populateFields () {
         guard let pet = pet else { return }
