@@ -14,8 +14,7 @@ class PetSelectTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchPets()
-        self.tableView.backgroundColor = UIColor(named: "lightGreyColor")
-        self.view.backgroundColor = UIColor(named: "lightGreyColor")
+        setupViews()
     }
     
     // MARK: - Actions
@@ -37,18 +36,16 @@ class PetSelectTableViewController: UITableViewController {
             switch success {
             case true:
                 print("pets fetched")
-//                self.updateViews()
             case false:
                 print("error")
             }
         }
     }
     
-//    func updateViews() {
-//        DispatchQueue.main.async {
-//            self.tableView.reloadData()
-//        }
-//    }
+    func setupViews() {
+        self.tableView.backgroundColor = UIColor(named: "lightGreyColor")
+        self.view.backgroundColor = UIColor(named: "lightGreyColor")
+    }
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

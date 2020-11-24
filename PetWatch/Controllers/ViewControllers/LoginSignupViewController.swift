@@ -17,8 +17,7 @@ class LoginSignupViewController: UIViewController {
     //MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(named: "lightGreyColor")
-        //Test
+        setupViews()
     }
     
     //MARK: - Actions
@@ -35,6 +34,10 @@ class LoginSignupViewController: UIViewController {
     }
     
     //MARK: - Helper Functions
+    func setupViews() {
+        self.view.backgroundColor = UIColor(named: "lightGreyColor")
+    }
+    
     func signupButtonTapped() {
         guard let email = emailTextField.text, !email.isEmpty,
               let password = passwordTextField.text,
