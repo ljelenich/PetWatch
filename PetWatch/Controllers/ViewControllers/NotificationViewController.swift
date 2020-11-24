@@ -79,6 +79,7 @@ class NotificationViewController: UIViewController {
         self.view.backgroundColor = UIColor(named: "lightGreyColor")
         disableAlertButton.layer.borderColor = UIColor.lightGray.cgColor
         disableAlertButton.layer.borderWidth = CGFloat(2)
+        datePickerTextField.isUserInteractionEnabled = false
     }
     
     func setupTextFields() {

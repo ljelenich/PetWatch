@@ -41,10 +41,10 @@ class PetController {
                 completion(.failure(.fbUserError(error)))
                 return
             }
-            self.storageRef.downloadURL(completion: { (downloadURL, err) in
+            self.storageRef.child("petProfileImage").child(filename).downloadURL(completion: { (downloadURL, err) in
                 guard let url = downloadURL else { return }
                 print(url)
-                self.firestoreDB.document(filename).setData(["profileImage": url], merge: true)
+                self.firestoreDB.document(filename).setData(["petImageUrl": url], merge: true)
                 completion(.success(true))
             })
         })
@@ -84,7 +84,7 @@ class PetController {
     }
     
     func updatePet(_ petUid: String, name: String, gender: String, petType: String, breed: String, color: String, birthday: String, outsideSchedule: String, primaryFood: String, allergies: String, spayedNeutered: Bool, microchip: String, vetName: String, medications: String, emergencyContactInfo: String, completion: @escaping (Result<Pet?, UserError>) -> Void) {
-        firestoreDB.document(petUid).setData(["name": name, "gender": gender, "petType": petType, "breed": breed, "color": color, "birthday": birthday, "outsideSchedule": outsideSchedule, "primaryFood": primaryFood, "allergies": allergies, "spayedNeutered": spayedNeutered, "microchip": microchip, "vetName": vetName, "medications": medications, "emergencyContactInfo": emergencyContactInfo], merge: true) { error in
+        firestoreDB.document(petUid).setData(["name": name, "gender": gender, "petType": petType, "breed": breed, "color": color, "birthday": birthday, "outsideSchedule": outsideSchedule, "primaryFood": primaryFood, "allergies": allergies, "spayedNeutered": spayedNeutered, "microchip": microchip, "vetName": vetName, "medications": medications, "emergencyContact": emergencyContactInfo], merge: true) { error in
             if let error = error {
                 print("There was an error updating data: \(error.localizedDescription)")
                 completion(.failure(.fbUserError(error)))
