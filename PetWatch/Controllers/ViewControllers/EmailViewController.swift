@@ -34,6 +34,7 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
         tableView.dataSource = self
         createRows()
         dismissKeyboardOnTap()
+        additionalInfoTextView.placeholder = "Add additional notes here"
     }
     
     override func viewWillAppear(_ animated: Bool) {
