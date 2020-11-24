@@ -17,6 +17,7 @@ class PetController {
     
     //MARK: - Firebase Firestore Database
     let firestoreDB = Firestore.firestore().collection("pets")
+    let storageRef = Storage.storage().reference()
     
     //MARK: - Source of truth
     var pet: Pet?
@@ -47,6 +48,20 @@ class PetController {
 //                completion(.success(true))
 //            })
 //        })
+    }
+    
+    func setPetProfileImage(_ petUid: String, petImage: UIImage?, completion: @escaping (Result<Bool, PetError>) -> Void) {
+        guard let petImage = petImage else { return }
+        guard let uploadProfileData = petImage.jpegData(compressionQuality: 0.3) else { return }
+        let filename = petUid
+        storageRef.child("petProfileImage").child(filename).putData(uploadProfileData, metadata: nil, completion: { (metadata, error) in
+            if let error = error {
+                print("There was an error uploading image data: \(error.localizedDescription)")
+                completion(.failure(.fbUserError(error)))
+                return
+            }
+            completion(.success(true))
+        })
     }
     
     func fetchPets(userUid: String, completion: @escaping (Bool) -> Void) {

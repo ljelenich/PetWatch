@@ -36,6 +36,7 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
         setupViews()
         createRows()
         dismissKeyboardOnTap()
+        additionalInfoTextView.placeholder = " Add additional notes here"
     }
     
     override func viewWillAppear(_ animated: Bool) {
