@@ -29,6 +29,8 @@ class PetListTableViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         fetchPets()
+        self.tableView.backgroundColor = UIColor(named: "lightGreyColor")
+        self.view.backgroundColor = UIColor(named: "lightGreyColor")
     }
     
     //MARK: - Actions
@@ -87,6 +89,7 @@ extension PetListTableViewController: UITableViewDelegate, UITableViewDataSource
         cell.textLabel?.text = petToDisplay.name
         cell.detailTextLabel?.text = petToDisplay.breed
         cell.imageView?.image = petToDisplay.profileImage
+        cell.backgroundColor = UIColor(named: "lightGreyColor")
         
         return cell
     }

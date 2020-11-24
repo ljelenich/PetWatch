@@ -12,6 +12,7 @@ class LaunchScreenCopyViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor(named: "lightGreyColor")
 
         if Auth.auth().currentUser == nil {
             let viewController: UIViewController = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "loginVC")

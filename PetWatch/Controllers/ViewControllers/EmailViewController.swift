@@ -19,6 +19,7 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var additionalInfoTextView: UITextView!
+    @IBOutlet weak var sharePetButton: UIButton!
     
     //MARK: - Properties
     
@@ -32,6 +33,7 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        setupViews()
         createRows()
         dismissKeyboardOnTap()
     }
@@ -53,6 +55,16 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
     }
     
     //MARK: - Helper Methods
+    
+    func setupViews() {
+        self.tableView.backgroundColor = UIColor(named: "lightGreyColor")
+        self.view.backgroundColor = UIColor(named: "lightGreyColor")
+        self.additionalInfoTextView.backgroundColor = UIColor(named: "lightGreyColor")
+        additionalInfoTextView.layer.borderWidth = CGFloat(2)
+        additionalInfoTextView.layer.borderColor = UIColor.lightGray.cgColor
+        sharePetButton.layer.borderWidth = CGFloat(2)
+        sharePetButton.layer.borderColor = UIColor.lightGray.cgColor
+    }
     
     func dismissKeyboardOnTap() {
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
@@ -178,7 +190,7 @@ extension EmailViewController: UITableViewDelegate, UITableViewDataSource {
         let row = rows[indexPath.row]
         cell.textLabel?.text = row.title
         cell.detailTextLabel?.text = row.value
-        
+        cell.backgroundColor = UIColor(named: "lightGreyColor")
         return cell
     }
 }

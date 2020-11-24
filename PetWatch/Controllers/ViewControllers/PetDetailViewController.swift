@@ -52,7 +52,8 @@ class PetDetailViewController: UIViewController {
     
     // MARK: - Helper Methods
     func setupViews() {
-        petNameLabel.text = PetController.shared.pet?.name
+        self.tableView.backgroundColor = UIColor(named: "lightGreyColor")
+        self.view.backgroundColor = UIColor(named: "lightGreyColor")
     }
     
     private func createRows() {
@@ -87,6 +88,7 @@ extension PetDetailViewController: UITableViewDelegate, UITableViewDataSource {
         let row = rows[indexPath.row]
         cell.textLabel?.text = row.title
         cell.detailTextLabel?.text = row.value
+        cell.backgroundColor = UIColor(named: "lightGreyColor")
         
         return cell
     }

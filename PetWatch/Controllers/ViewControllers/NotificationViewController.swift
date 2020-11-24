@@ -16,6 +16,7 @@ class NotificationViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var datePickerTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var disableAlertButton: UIButton!
     
     var isExistinNotification: Bool?
     var alertUid: String?
@@ -32,7 +33,7 @@ class NotificationViewController: UIViewController {
         super.viewDidLoad()
         requestPermissionForNotifications()
         setupTextFields()
-        titleTextField.text = notification?.title
+        setupViews()
     }
     
     //MARK: - Actions
@@ -73,6 +74,13 @@ class NotificationViewController: UIViewController {
     }
     
     //MARK: - Helper Functions
+    func setupViews() {
+        titleTextField.text = notification?.title
+        self.view.backgroundColor = UIColor(named: "lightGreyColor")
+        disableAlertButton.layer.borderColor = UIColor.lightGray.cgColor
+        disableAlertButton.layer.borderWidth = CGFloat(2)
+    }
+    
     func setupTextFields() {
         titleTextField.text = notification?.title
         datePickerTextField.text = notification?.dateTime
