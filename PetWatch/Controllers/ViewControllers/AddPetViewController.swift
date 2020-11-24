@@ -28,8 +28,13 @@ class AddPetViewController: UIViewController {
     @IBOutlet weak var spayedSegmentedControl: UISegmentedControl!
     
     //MARK: - Properties
-    
-    var pet: Pet?
+    var petUid: String?
+    var pet: Pet? {
+        didSet {
+            guard let pet = pet else { return }
+            petUid = pet.petUid
+        }
+    }
     
     //MARK: - Lifecycle Functions
 
@@ -77,14 +82,36 @@ class AddPetViewController: UIViewController {
             spayedNeutered = false
         }
         guard let name = nameTextField.text, let gender = genderTextField.text, let petType = petTypeTextField.text, let breed = breedTextField.text, let color = colorTextField.text, let birthday = birthdayTextField.text, let outsideSchedule = outsideScheduleTextField.text, let primaryFood = primaryFoodTextField.text, let allergies = allergiesTextField.text, let microchip = microchipTextField.text, let vetName = vetNameAndPhoneTextField.text, let medications = medicationsTextField.text, let emergencyContact = emergencyContactTextField.text else { return }
-        PetController.shared.createPet(userUid: userUid, name: name, gender: gender, petType: petType, breed: breed, color: color, birthday: birthday, outsideSchedule: outsideSchedule, primaryFood: primaryFood, allergies: allergies, spayedNeutered: spayedNeutered, microchip: microchip, vetName: vetName, medications: medications, emergencyContact: emergencyContact) { (result) in
-            switch result {
-            case .success(_):
-                self.dismiss()
-            case .failure(let error):
-                print(error.localizedDescription)
+        
+        if ((pet?.petUid.isEmpty) != nil) {
+            guard let petUid = pet?.petUid else { return }
+            PetController.shared.updatePet(petUid, name: name, gender: gender, petType: petType, breed: breed, color: color, birthday: birthday, outsideSchedule: outsideSchedule, primaryFood: primaryFood, allergies: allergies, spayedNeutered: spayedNeutered, microchip: microchip, vetName: vetName, medications: medications, emergencyContactInfo: emergencyContact) { (result) in
+                switch result {
+                case .success(_):
+                    self.dismiss()
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        } else {
+            PetController.shared.createPet(userUid: userUid, name: name, gender: gender, petType: petType, breed: breed, color: color, birthday: birthday, outsideSchedule: outsideSchedule, primaryFood: primaryFood, allergies: allergies, spayedNeutered: spayedNeutered, microchip: microchip, vetName: vetName, medications: medications, emergencyContact: emergencyContact) { (result) in
+                switch result {
+                case .success(_):
+                    self.dismiss()
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
             }
         }
+        
+//        PetController.shared.createPet(userUid: userUid, name: name, gender: gender, petType: petType, breed: breed, color: color, birthday: birthday, outsideSchedule: outsideSchedule, primaryFood: primaryFood, allergies: allergies, spayedNeutered: spayedNeutered, microchip: microchip, vetName: vetName, medications: medications, emergencyContact: emergencyContact) { (result) in
+//            switch result {
+//            case .success(_):
+//                self.dismiss()
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
     }
     
     func dismiss() {
