@@ -25,6 +25,7 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
     //MARK: - Properties
     
     var pets: Pet?
+    var image: UIImage?
     
     private var rows: [Row] = []
     
@@ -37,7 +38,6 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
         setupViews()
         createRows()
         dismissKeyboardOnTap()
-        testImage()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,18 +73,7 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
     }
-    
-    func testImage() {
-        guard let petUid = pets?.petUid else { return }
-        let imageStorageRef = Storage.storage().reference().child("petImageUrl/\(petUid)")
-        imageStorageRef.getData(maxSize: 2 * 1024 * 1024) { data, error in
-            if error == nil, let data = data {
-                print("test data: \(UIImage(data: data))")
-//                mail.addAttachmentData(data, mimeType: "jpeg", fileName: "petphoto.jpeg")
-            }
-        }
-    }
-    
+
     func sendEmail() {
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
@@ -92,12 +81,25 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
             mail.setToRecipients([""])
             mail.setSubject("Pet Information")
             mail.setMessageBody("<hr><h2>Pet Information</h2>Name: \(pets?.name ?? "")</br></br>Gender: \(pets?.gender ?? "")</br></br>Pet Type: \(pets?.petType ?? "")</br></br>Breed: \(pets?.breed ?? "")</br></br>Color: \(pets?.color ?? "")</br></br>Birthday: \(pets?.birthday ?? "")</br></br><hr><h2>Care Information</h2>Outside Schedule: \(pets?.outsideSchedule ?? "")</br></br>Primary Food: \(pets?.primaryFood ?? "")</br></br>Allergies: \(pets?.allergies ?? "")</br></br><hr><h2>Medical Information</h2>Spayed/Neutered: \(pets?.spayedNeutered.description ?? "")</br></br>Microchip: \(pets?.microchip ?? "")</br></br>Vet Name & Contact: \(pets?.vetName ?? "")</br></br>Medications: \(pets?.medications ?? "")</br></br>Emergency Contact: \(pets?.emergencyContact ?? "")</br></br><hr><h2>Additional Information</h2>Additional Info: \(additionalInfoTextView.text ?? "")</br></br><hr>", isHTML: true)
-            let image = pets?.profileImage
-            if let image = image, let imageData = image.jpegData(compressionQuality: 0.5) {
-                mail.addAttachmentData(imageData, mimeType: "jpeg", fileName: "petphoto.jpeg")
-            } else {
-                print("No image to send")
+
+            guard let petUid = pets?.petUid else { return }
+            let imageStorageRef = Storage.storage().reference().child("petImageUrl/\(petUid)")
+            imageStorageRef.getData(maxSize: 2 * 1024 * 1024) { data, error in
+                print("here\(data)")
+                if error == nil, let data = data {
+                    self.image = UIImage(data: data)
+                    if let image = self.image, let imageData = image.jpegData(compressionQuality: 0.5) {
+                        mail.addAttachmentData(imageData, mimeType: "jpeg", fileName: "petphoto.jpeg")
+                    } else {
+                        print("No image to send")
+                    }
+                }
             }
+//            if let image = image, let imageData = image.jpegData(compressionQuality: 0.5) {
+//                mail.addAttachmentData(imageData, mimeType: "jpeg", fileName: "petphoto.jpeg")
+//            } else {
+//                print("No image to send")
+//            }
             present(mail, animated: true, completion: nil)
         } else {
             print("Device cannot send email.")
