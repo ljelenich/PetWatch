@@ -72,7 +72,7 @@ class PetDetailViewController: UIViewController {
         petImageView.clipsToBounds = true
         petImageView.contentMode = .scaleAspectFill
         petImageView.backgroundColor = UIColor.tealColor()
-        petImageView.layer.cornerRadius = 5
+        petImageView.layer.cornerRadius = 10
         selectImageButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         selectImageButton.setTitleColor(.white, for: .normal)
         selectImageButton.backgroundColor = .clear
