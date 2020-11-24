@@ -14,6 +14,8 @@ class PetSelectTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchPets()
+        self.tableView.backgroundColor = UIColor(named: "lightGreyColor")
+        self.view.backgroundColor = UIColor(named: "lightGreyColor")
     }
     
     // MARK: - Actions
@@ -58,6 +60,7 @@ class PetSelectTableViewController: UITableViewController {
         let petToDisplay = PetController.shared.pets[indexPath.row]
         cell.detailTextLabel?.text = petToDisplay.breed
         cell.textLabel?.text = petToDisplay.name
+        cell.backgroundColor = UIColor(named: "lightGreyColor")
 
         return cell
     }

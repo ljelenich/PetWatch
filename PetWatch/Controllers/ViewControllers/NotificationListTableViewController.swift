@@ -27,6 +27,7 @@ class NotificationListTableViewController: UITableViewController {
         refresh.attributedTitle = NSAttributedString(string: "Pull see update")
         refresh.addTarget(self, action: #selector(updateViews), for: .valueChanged)
         tableView?.addSubview(refresh)
+        self.tableView.backgroundColor = UIColor(named: "lightGreyColor")
     }
     
     func fetchNotifications() {
@@ -60,6 +61,7 @@ class NotificationListTableViewController: UITableViewController {
         let notification = NotificationController.shared.notifications[indexPath.row]
         cell.textLabel?.text = notification.title
         cell.detailTextLabel?.text = notification.dateTime
+        cell.backgroundColor = UIColor(named: "lightGreyColor")
         return cell
     }
     

@@ -13,16 +13,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        UINavigationBar.appearance().barTintColor = UIColor.tealColor()
+//        UINavigationBar.appearance().barTintColor = UIColor.tealColor()
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-        UINavigationBar.appearance().isTranslucent = false
-        UITabBar.appearance().barTintColor = UIColor.tealColor()
-        if #available(iOS 10.0, *) {
-            UITabBar.appearance().unselectedItemTintColor = UIColor.white
-        } else {
-            // Fallback on earlier versions
-        }
+//        UINavigationBar.appearance().isTranslucent = false
+//        UITabBar.appearance().barTintColor = UIColor.grayColor()
+//        if #available(iOS 10.0, *) {
+//            UITabBar.appearance().unselectedItemTintColor = UIColor.white
+//        } else {
+//            // Fallback on earlier versions
+//        }
         UITabBar.appearance().tintColor = UIColor.white
         return true
     }
