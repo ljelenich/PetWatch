@@ -44,8 +44,21 @@ class PetDetailViewController: UIViewController {
     }
 
     // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+    
+    func showEditPetProfile() {
+        let stroyboard = UIStoryboard(name: "Main", bundle: nil)
+        let updatePetVC = stroyboard.instantiateViewController(identifier: "") as! AddPetViewController
+        updatePetVC.pet = pets
+        self.navigationController?.pushViewController(updatePetVC, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.destination is AddPetViewController
+        {
+            let vc = segue.destination as? AddPetViewController
+            vc?.pet = pets
+        }
     }
     
     // MARK: - Helper Methods
