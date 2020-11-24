@@ -11,6 +11,7 @@ import FirebaseAuth
 class AddPetViewController: UIViewController {
     
     //MARK: - Outlets
+    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var genderTextField: UITextField!
     @IBOutlet weak var petTypeTextField: UITextField!
@@ -26,18 +27,47 @@ class AddPetViewController: UIViewController {
     @IBOutlet weak var emergencyContactTextField: UITextField!
     @IBOutlet weak var spayedSegmentedControl: UISegmentedControl!
     
+    //MARK: - Properties
+    
+    var pet: Pet?
+    
     //MARK: - Lifecycle Functions
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        populateFields()
     }
     
     //MARK: - Actions
+    
     @IBAction func savePetButtonTapped(_ sender: Any) {
         savePet()
     }
     
     //MARK: - Helper Functions
+    
+    func populateFields () {
+        guard let pet = pet else { return }
+        nameTextField.text = pet.name
+        genderTextField.text = pet.gender
+        petTypeTextField.text = pet.petType
+        breedTextField.text = pet.breed
+        colorTextField.text = pet.color
+        birthdayTextField.text = pet.birthday
+        outsideScheduleTextField.text = pet.outsideSchedule
+        primaryFoodTextField.text = pet.primaryFood
+        allergiesTextField.text = pet.allergies
+        if pet.spayedNeutered == true {
+            spayedSegmentedControl.selectedSegmentIndex = "Yes"
+        } else {
+            spayedSegmentedControl.selectedSegmentIndex = "No"
+        }
+        microchipTextField.text = pet.microchip
+        vetNameAndPhoneTextField.text = pet.vetName
+        medicationsTextField.text = pet.medications
+        emergencyContactTextField.text = pet.emergencyContact
+    }
+    
     func savePet() {
         guard let userUid = Auth.auth().currentUser?.uid else { return }
         let spayedNeutered: Bool
