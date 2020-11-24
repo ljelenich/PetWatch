@@ -104,15 +104,6 @@ class AddPetViewController: UIViewController {
                 }
             }
         }
-        
-//        PetController.shared.createPet(userUid: userUid, name: name, gender: gender, petType: petType, breed: breed, color: color, birthday: birthday, outsideSchedule: outsideSchedule, primaryFood: primaryFood, allergies: allergies, spayedNeutered: spayedNeutered, microchip: microchip, vetName: vetName, medications: medications, emergencyContact: emergencyContact) { (result) in
-//            switch result {
-//            case .success(_):
-//                self.dismiss()
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//        }
     }
     
     func dismiss() {
