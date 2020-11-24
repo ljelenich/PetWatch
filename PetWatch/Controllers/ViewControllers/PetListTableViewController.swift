@@ -36,7 +36,7 @@ class PetListTableViewController: UIViewController {
     @IBAction func logOutButtonTapped(_ sender: Any) {
         do {
             try Auth.auth().signOut()
-            
+            handleLogout()
         } catch let signOutErr {
             print("Failed to sign out:", signOutErr)
         }
@@ -76,6 +76,14 @@ class PetListTableViewController: UIViewController {
     @objc func updateViews() {
         fetchPets()
         PetController.shared.pets.removeAll()
+    }
+    
+    func handleLogout() {
+        DispatchQueue.main.async {
+            let viewController: UIViewController = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "loginVC")
+            viewController.modalPresentationStyle = .fullScreen
+            self.present(viewController, animated: true)
+        }
     }
 }
 
