@@ -25,6 +25,8 @@
 		6C6445E12566CD0400FCFFD9 /* NotificationListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6445E02566CD0400FCFFD9 /* NotificationListTableViewController.swift */; };
 		6C6445E82566F56200FCFFD9 /* NotificationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6445E72566F56200FCFFD9 /* NotificationError.swift */; };
 		6CC475AE25681B7800D4E81B /* PetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC475AD25681B7800D4E81B /* PetError.swift */; };
+		6CC91AC6256D6607007AAFBB /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CC91AC5256D6606007AAFBB /* Colors.xcassets */; };
+		6CC91AC9256D66ED007AAFBB /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC91AC8256D66ED007AAFBB /* Colors.swift */; };
 		B60DBA00256343E60086F676 /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60DB9FF256343E60086F676 /* Pet.swift */; };
 		B60DBA09256439020086F676 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B60DBA08256439020086F676 /* Login.storyboard */; };
 		B60DBA0F25644ACD0086F676 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60DBA0E25644ACD0086F676 /* EmailViewController.swift */; };
@@ -60,6 +62,8 @@
 		6C6445E02566CD0400FCFFD9 /* NotificationListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListTableViewController.swift; sourceTree = "<group>"; };
 		6C6445E72566F56200FCFFD9 /* NotificationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationError.swift; sourceTree = "<group>"; };
 		6CC475AD25681B7800D4E81B /* PetError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetError.swift; sourceTree = "<group>"; };
+		6CC91AC5256D6606007AAFBB /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		6CC91AC8256D66ED007AAFBB /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		7D16A92DEEF6ABCA0E92E78F /* Pods-PetWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetWatch.release.xcconfig"; path = "Target Support Files/Pods-PetWatch/Pods-PetWatch.release.xcconfig"; sourceTree = "<group>"; };
 		B60DB9FF256343E60086F676 /* Pet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
 		B60DBA08256439020086F676 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -91,6 +95,7 @@
 				6C6445E72566F56200FCFFD9 /* NotificationError.swift */,
 				6CC475AD25681B7800D4E81B /* PetError.swift */,
 				6C027F822564732A0042A4A5 /* FirebaseErrors.swift */,
+				6CC91AC8256D66ED007AAFBB /* Colors.swift */,
 			);
 			path = "Helpers and Extensions";
 			sourceTree = "<group>";
@@ -133,6 +138,7 @@
 				6C2FE0782562F79100040F5A /* AppDelegate.swift */,
 				6C2FE07A2562F79100040F5A /* SceneDelegate.swift */,
 				6C2FE0812562F79500040F5A /* Assets.xcassets */,
+				6CC91AC5256D6606007AAFBB /* Colors.xcassets */,
 				6C2FE0832562F79500040F5A /* LaunchScreen.storyboard */,
 				6C2FE0862562F79500040F5A /* Info.plist */,
 			);
@@ -142,7 +148,6 @@
 		6C2FE0922562F80800040F5A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				6C33D9962565944600E63BDF /* Custom Cells */,
 				6C2FE0932562F81800040F5A /* Storyboards */,
 			);
 			path = Views;
@@ -155,13 +160,6 @@
 				B60DBA08256439020086F676 /* Login.storyboard */,
 			);
 			path = Storyboards;
-			sourceTree = "<group>";
-		};
-		6C33D9962565944600E63BDF /* Custom Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Custom Cells";
 			sourceTree = "<group>";
 		};
 		6C42AFCD25630074005D7255 /* Controllers */ = {
@@ -289,6 +287,7 @@
 				6C2FE0852562F79500040F5A /* LaunchScreen.storyboard in Resources */,
 				6C2FE0952562F9D400040F5A /* GoogleService-Info.plist in Resources */,
 				6C2FE0822562F79500040F5A /* Assets.xcassets in Resources */,
+				6CC91AC6256D6607007AAFBB /* Colors.xcassets in Resources */,
 				B60DBA09256439020086F676 /* Login.storyboard in Resources */,
 				6C2FE0802562F79100040F5A /* Main.storyboard in Resources */,
 			);
@@ -356,6 +355,7 @@
 				B60DBA33256586A00086F676 /* AddPetViewController.swift in Sources */,
 				B60DBA00256343E60086F676 /* Pet.swift in Sources */,
 				6C0C1A6F2563198000CAD171 /* UserError.swift in Sources */,
+				6CC91AC9256D66ED007AAFBB /* Colors.swift in Sources */,
 				6C6445E12566CD0400FCFFD9 /* NotificationListTableViewController.swift in Sources */,
 				6C33D994256593BF00E63BDF /* NotificationViewController.swift in Sources */,
 				FAEBFCD12565C65500E988C5 /* PetSelectTableViewController.swift in Sources */,
