@@ -52,6 +52,7 @@ class PetListTableViewController: UIViewController {
         self.view.backgroundColor = UIColor(named: "lightGreyColor")
     }
     
+    
     func fetchPets() {
         guard let userUid = Auth.auth().currentUser?.uid else { return }
         PetController.shared.fetchPets(userUid: userUid) { (success) in
@@ -88,15 +89,16 @@ extension PetListTableViewController: UITableViewDelegate, UITableViewDataSource
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "petCell", for: indexPath)
-        let petToDisplay = PetController.shared.pets[indexPath.row]
-        cell.textLabel?.text = petToDisplay.name
-        cell.detailTextLabel?.text = petToDisplay.breed
-        cell.imageView?.image = petToDisplay.profileImage
-        cell.backgroundColor = UIColor(named: "lightGreyColor")
-        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "petCell", for: indexPath) as? PetListTableViewCell else { return UITableViewCell() }
+        let pet = PetController.shared.pets[indexPath.row]
+        cell.pet = pet
         return cell
+        
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+           return view.frame.height / 10
+       }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {

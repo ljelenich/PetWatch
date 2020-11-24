@@ -6,18 +6,37 @@
 //
 
 import UIKit
+import FirebaseStorage
 
 class PetListTableViewCell: UITableViewCell {
+    
+    // MARK: - Outlets
+    @IBOutlet weak var petNameLabel: UILabel!
+    @IBOutlet weak var petTypeLabel: UILabel!
+    @IBOutlet weak var petImageView: UIImageView!
+    
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    var pet: Pet? {
+        didSet {
+            setupViews()
+        }
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    func setupViews() {
+        self.backgroundColor = UIColor(named: "lightGreyColor")
+        petImageView.layer.cornerRadius = 20
+        
+        guard let pet = pet else { return }
+        petNameLabel.text = "\(pet.name)"
+        petTypeLabel.text = "\(pet.petType)"
+        
+        let petUid = pet.petUid
+        let imageStorageRef = Storage.storage().reference().child("petProfileImage/\(petUid)")
+        imageStorageRef.getData(maxSize: 2 * 1024 * 1024) { data, error in
+            if error == nil, let data = data {
+                self.petImageView.image = UIImage(data: data)
+            }
+        }
     }
 
 }
