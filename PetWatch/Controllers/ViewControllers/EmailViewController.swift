@@ -7,6 +7,7 @@
 
 import UIKit
 import MessageUI
+import FirebaseStorage
 
 class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate {
     
@@ -36,6 +37,7 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
         setupViews()
         createRows()
         dismissKeyboardOnTap()
+        testImage()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,6 +72,17 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
     func dismissKeyboardOnTap() {
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
+    }
+    
+    func testImage() {
+        guard let petUid = pets?.petUid else { return }
+        let imageStorageRef = Storage.storage().reference().child("petImageUrl/\(petUid)")
+        imageStorageRef.getData(maxSize: 2 * 1024 * 1024) { data, error in
+            if error == nil, let data = data {
+                print("test data: \(UIImage(data: data))")
+//                mail.addAttachmentData(data, mimeType: "jpeg", fileName: "petphoto.jpeg")
+            }
+        }
     }
     
     func sendEmail() {
