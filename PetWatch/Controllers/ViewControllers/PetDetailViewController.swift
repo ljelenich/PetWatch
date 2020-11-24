@@ -9,10 +9,6 @@ import UIKit
 import FirebaseAuth
 import FirebaseStorage
 
-protocol PetDetailViewControllerDelegate: AnyObject {
-    func petDetailViewControllerSelected(image: UIImage)
-}
-
 class PetDetailViewController: UIViewController {
     
     struct Row {
@@ -30,13 +26,14 @@ class PetDetailViewController: UIViewController {
     // MARK: - Properties
     var pets: Pet?
     private var rows: [Row] = []
-    weak var delegate: PetDetailViewControllerDelegate?
+    let profileImagePicker = UIImagePickerController()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        setupImageView()
         createRows()
         setupViews()
     }
@@ -48,11 +45,31 @@ class PetDetailViewController: UIViewController {
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
     }
     
     // MARK: - Helper Methods
     func setupViews() {
         petNameLabel.text = PetController.shared.pet?.name
+    }
+    
+    func setupImageView() {
+        profileImagePicker.delegate = self
+        petImageView.clipsToBounds = true
+        petImageView.contentMode = .scaleAspectFill
+        petImageView.backgroundColor = UIColor.tealColor()
+        petImageView.layer.cornerRadius = 5
+        selectImageButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+        selectImageButton.setTitleColor(.white, for: .normal)
+        selectImageButton.backgroundColor = .clear
+        
+        guard let petUid = pets?.petUid else { return }
+        let imageStorageRef = Storage.storage().reference().child("petProfileImage/\(petUid)")
+        imageStorageRef.getData(maxSize: 2 * 1024 * 1024) { data, error in
+            if error == nil, let data = data {
+                self.petImageView.image = UIImage(data: data)
+            }
+        }
     }
     
     private func createRows() {
@@ -96,9 +113,17 @@ extension PetDetailViewController: UIImagePickerControllerDelegate, UINavigation
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
         if let photo = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            selectImageButton.setTitle("Select Photo", for: .normal)
+            selectImageButton.setTitle("Change Image", for: .normal)
             petImageView.image = photo
-            delegate?.petDetailViewControllerSelected(image: photo)
+            guard let petUid = pets?.petUid else { return }
+            PetController.shared.setPetProfileImage(petUid, petImage: photo) { (result) in
+                switch result {
+                case .success(_):
+                    print("photo was success")
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
         }
     }
     
@@ -107,20 +132,18 @@ extension PetDetailViewController: UIImagePickerControllerDelegate, UINavigation
     }
     
     func presentImagePickerActionSheet() {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
         let actionSheet = UIAlertController(title: "Pick a photo", message: nil, preferredStyle: .actionSheet)
         
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             actionSheet.addAction(UIAlertAction(title: "Photos", style: .default, handler: { (_) in
-                imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
-                self.present(imagePickerController, animated: true, completion: nil)
+                self.profileImagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+                self.present(self.profileImagePicker, animated: true, completion: nil)
             }))
         }
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (_) in
-                imagePickerController.sourceType = UIImagePickerController.SourceType.camera
-                self.present(imagePickerController, animated: true)
+                self.profileImagePicker.sourceType = UIImagePickerController.SourceType.camera
+                self.present(self.profileImagePicker, animated: true)
             }))
         }
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
