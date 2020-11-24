@@ -25,29 +25,10 @@ class PetController {
     
     //MARK: - CRUD Functions
     func createPet(userUid: String, name: String, gender: String, petType: String, breed: String, color: String, birthday: String, outsideSchedule: String, primaryFood: String, allergies: String, spayedNeutered: Bool, microchip: String, vetName: String, medications: String, emergencyContact: String, completion: @escaping (Result<Bool, UserError>) -> Void) {
-        
-//        guard let image = profileImage else { return }
-//        guard let uploadData = image.jpegData(compressionQuality: 0.3) else { return }
 
         let filename = UUID().uuidString
         self.firestoreDB.document(filename).setData(["userUid": userUid, "petUid": filename, "name": name, "gender": gender, "petType": petType, "breed": breed, "color": color, "birthday": birthday, "outsideSchedule": outsideSchedule, "primaryFood": primaryFood, "allergies": allergies, "spayedNeutered": spayedNeutered, "microchip": microchip, "vetName": vetName, "medications": medications, "emergencyContact": emergencyContact])
         completion(.success(true))
-        
-//        let storageRef = Storage.storage().reference().child("profileImage").child(filename)
-//        storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
-//
-//            if let error = error {
-//                print("There was an error uploading image data: \(error.localizedDescription)")
-//                completion(.failure(.fbUserError(error)))
-//                return
-//            }
-//
-//            storageRef.downloadURL(completion: { (downloadURL, err) in
-//                guard let userUid =  Auth.auth().currentUser?.uid, let url = downloadURL else { return }
-//                self.firestoreDB.document(filename).setData(["userUid": userUid, "petUid": filename, "name": name, "profileImageUrl": url, "gender": gender, "petType": petType, "breed": breed, "color": color, "birthday": birthday, "outsideSchedule": outsideSchedule, "primaryFood": primaryFood, "allergies": allergies, "spayedNeutered": spayedNeutered, "microchip": microchip, "vetName": vetName, "medications": medications, "emergencyContact": emergencyContact, "specialInstructions": specialInstructions])
-//                completion(.success(true))
-//            })
-//        })
     }
     
     func setPetProfileImage(_ petUid: String, petImage: UIImage?, completion: @escaping (Result<Bool, PetError>) -> Void) {
@@ -60,7 +41,12 @@ class PetController {
                 completion(.failure(.fbUserError(error)))
                 return
             }
-            completion(.success(true))
+            self.storageRef.downloadURL(completion: { (downloadURL, err) in
+                guard let url = downloadURL else { return }
+                print(url)
+                self.firestoreDB.document(filename).setData(["profileImage": url], merge: true)
+                completion(.success(true))
+            })
         })
     }
     
