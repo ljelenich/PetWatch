@@ -58,9 +58,9 @@ class AddPetViewController: UIViewController {
         primaryFoodTextField.text = pet.primaryFood
         allergiesTextField.text = pet.allergies
         if pet.spayedNeutered == true {
-            spayedSegmentedControl.selectedSegmentIndex = "Yes"
+            spayedSegmentedControl.selectedSegmentIndex = 0
         } else {
-            spayedSegmentedControl.selectedSegmentIndex = "No"
+            spayedSegmentedControl.selectedSegmentIndex = 1
         }
         microchipTextField.text = pet.microchip
         vetNameAndPhoneTextField.text = pet.vetName
