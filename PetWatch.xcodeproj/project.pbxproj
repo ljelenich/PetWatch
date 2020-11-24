@@ -142,7 +142,6 @@
 		6C2FE0922562F80800040F5A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				6C33D9962565944600E63BDF /* Custom Cells */,
 				6C2FE0932562F81800040F5A /* Storyboards */,
 			);
 			path = Views;
@@ -155,13 +154,6 @@
 				B60DBA08256439020086F676 /* Login.storyboard */,
 			);
 			path = Storyboards;
-			sourceTree = "<group>";
-		};
-		6C33D9962565944600E63BDF /* Custom Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Custom Cells";
 			sourceTree = "<group>";
 		};
 		6C42AFCD25630074005D7255 /* Controllers */ = {
@@ -515,7 +507,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 746938BQUT;
 				INFOPLIST_FILE = PetWatch/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -536,7 +528,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 746938BQUT;
 				INFOPLIST_FILE = PetWatch/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
