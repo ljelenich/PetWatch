@@ -42,6 +42,17 @@ class AddPetViewController: UIViewController {
         super.viewDidLoad()
         populateFields()
         setupViews()
+        dismissKeyboardOnTap()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.addKeyboardObserver()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.removeKeyboardObserver()
     }
     
     //MARK: - Actions
@@ -53,6 +64,11 @@ class AddPetViewController: UIViewController {
     //MARK: - Helper Functions
     func setupViews() {
         self.view.backgroundColor = UIColor(named: "lightGreyColor")
+    }
+    
+    func dismissKeyboardOnTap() {
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        view.addGestureRecognizer(tap)
     }
     
     func populateFields () {
