@@ -288,9 +288,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="petBreedLabel" destination="SLZ-dG-ONH" id="J1F-Qd-hE0"/>
                                             <outlet property="petImageView" destination="Tmd-fR-0hQ" id="PMd-uI-YKv"/>
                                             <outlet property="petNameLabel" destination="H8b-CJ-xhm" id="oBO-Ri-YdP"/>
-                                            <outlet property="petTypeLabel" destination="SLZ-dG-ONH" id="8ZH-JT-ja0"/>
                                             <segue destination="x0x-fZ-BxA" kind="show" identifier="showPetDetail" id="0JW-I0-8AC"/>
                                         </connections>
                                     </tableViewCell>
