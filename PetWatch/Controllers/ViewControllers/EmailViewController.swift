@@ -85,7 +85,6 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
             guard let petUid = pets?.petUid else { return }
             let imageStorageRef = Storage.storage().reference().child("petImageUrl/\(petUid)")
             imageStorageRef.getData(maxSize: 2 * 1024 * 1024) { data, error in
-                print("here\(data)")
                 if error == nil, let data = data {
                     self.image = UIImage(data: data)
                     if let image = self.image, let imageData = image.jpegData(compressionQuality: 0.5) {
