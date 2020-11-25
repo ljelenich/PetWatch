@@ -10,7 +10,15 @@ import FirebaseAuth
 
 class PetSelectTableViewController: UITableViewController {
     
+    //MARK: - Properties
+    var refresh: UIRefreshControl = UIRefreshControl()
+    
     // MARK: - Lifecycle
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        refreshViews()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchPets()
@@ -36,6 +44,10 @@ class PetSelectTableViewController: UITableViewController {
             switch success {
             case true:
                 print("pets fetched")
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.refresh.endRefreshing()
+                }
             case false:
                 print("error")
             }
@@ -45,6 +57,17 @@ class PetSelectTableViewController: UITableViewController {
     func setupViews() {
         self.tableView.backgroundColor = UIColor(named: "lightGreyColor")
         self.view.backgroundColor = UIColor(named: "lightGreyColor")
+    }
+    
+    func refreshViews() {
+        refresh.attributedTitle = NSAttributedString(string: "Pull to see updated pet list.")
+        refresh.addTarget(self, action: #selector(updateViews), for: .valueChanged)
+        tableView.addSubview(refresh)
+    }
+    
+    @objc func updateViews() {
+        fetchPets()
+        PetController.shared.pets.removeAll()
     }
 
     // MARK: - Table view data source
