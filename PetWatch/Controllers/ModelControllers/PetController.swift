@@ -41,12 +41,7 @@ class PetController {
                 completion(.failure(.fbUserError(error)))
                 return
             }
-            self.storageRef.child("petProfileImage").child(filename).downloadURL(completion: { (downloadURL, err) in
-                guard let url = downloadURL else { return }
-                print(url)
-                self.firestoreDB.document(filename).setData(["petImageUrl": url], merge: true)
-                completion(.success(true))
-            })
+            completion(.success(true))
         })
     }
     
