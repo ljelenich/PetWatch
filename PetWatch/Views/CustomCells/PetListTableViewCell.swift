@@ -12,7 +12,7 @@ class PetListTableViewCell: UITableViewCell {
     
     // MARK: - Outlets
     @IBOutlet weak var petNameLabel: UILabel!
-    @IBOutlet weak var petTypeLabel: UILabel!
+    @IBOutlet weak var petBreedLabel: UILabel!
     @IBOutlet weak var petImageView: UIImageView!
     
 
@@ -28,7 +28,7 @@ class PetListTableViewCell: UITableViewCell {
         
         guard let pet = pet else { return }
         petNameLabel.text = "\(pet.name)"
-        petTypeLabel.text = "\(pet.petType)"
+        petBreedLabel.text = "\(pet.breed)"
         
         let petUid = pet.petUid
         let imageStorageRef = Storage.storage().reference().child("petProfileImage/\(petUid)")
