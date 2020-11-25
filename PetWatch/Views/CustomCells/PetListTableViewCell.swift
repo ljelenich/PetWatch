@@ -24,7 +24,7 @@ class PetListTableViewCell: UITableViewCell {
 
     func setupViews() {
         self.backgroundColor = UIColor(named: "lightGreyColor")
-        petImageView.layer.cornerRadius = 20
+        petImageView.layer.cornerRadius = 50
         
         guard let pet = pet else { return }
         petNameLabel.text = "\(pet.name)"
