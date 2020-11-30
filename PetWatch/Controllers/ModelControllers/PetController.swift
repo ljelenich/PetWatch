@@ -27,7 +27,7 @@ class PetController {
     func createPet(userUid: String, name: String, gender: String, petType: String, breed: String, color: String, birthday: String, outsideSchedule: String, primaryFood: String, allergies: String, spayedNeutered: Bool, microchip: String, vetName: String, medications: String, emergencyContact: String, completion: @escaping (Result<Bool, UserError>) -> Void) {
 
         let filename = UUID().uuidString
-        self.firestoreDB.document(filename).setData(["userUid": userUid, "petUid": filename, "name": name, "gender": gender, "petType": petType, "breed": breed, "color": color, "birthday": birthday, "outsideSchedule": outsideSchedule, "primaryFood": primaryFood, "allergies": allergies, "spayedNeutered": spayedNeutered, "microchip": microchip, "vetName": vetName, "medications": medications, "emergencyContact": emergencyContact, "imageUrl": ""])
+        self.firestoreDB.document(filename).setData(["userUid": userUid, "petUid": filename, "name": name, "gender": gender, "petType": petType, "breed": breed, "color": color, "birthday": birthday, "outsideSchedule": outsideSchedule, "primaryFood": primaryFood, "allergies": allergies, "spayedNeutered": spayedNeutered, "microchip": microchip, "vetName": vetName, "medications": medications, "emergencyContact": emergencyContact])
         completion(.success(true))
     }
     
@@ -73,10 +73,10 @@ class PetController {
                           let medications = dictionary["medications"] as? String,
                           let emergencyContact = dictionary["emergencyContact"] as? String,
                           let userUid = dictionary["userUid"] as? String,
-                          let petUid = dictionary["petUid"] as? String,
-                          let petImageUrl = dictionary["imageUrl"] as? String else { return }
+                          let petUid = dictionary["petUid"] as? String else { return }
+                    let imageUrl = dictionary["imageUrl"] as? String ?? ""
                     
-                    let getPetInfo = Pet(petUid: petUid, userUid: userUid, name: name, gender: gender, petType: petType, breed: breed, color: color, birthday: birthday, outsideSchedule: outsideSchedule, primaryFood: primaryFood, allergies: allergies, spayedNeutered: spayedNeutered, microchip: microchip, vetName: vetName, medications: medications, emergencyContact: emergencyContact)
+                    let getPetInfo = Pet(petUid: petUid, userUid: userUid, name: name, gender: gender, petType: petType, breed: breed, color: color, birthday: birthday, outsideSchedule: outsideSchedule, primaryFood: primaryFood, allergies: allergies, spayedNeutered: spayedNeutered, microchip: microchip, vetName: vetName, medications: medications, emergencyContact: emergencyContact, petImageUrl: imageUrl)
                     self.pets.append(getPetInfo)
                 }
                 completion(true)

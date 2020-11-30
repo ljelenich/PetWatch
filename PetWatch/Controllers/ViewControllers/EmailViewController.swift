@@ -78,35 +78,9 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
             mail.mailComposeDelegate = self
             mail.setToRecipients([""])
             guard let petName = pets?.name else { return }
+            let petImageUrl = pets?.petImageUrl
             mail.setSubject("\(petName)'s Information")
-            mail.setMessageBody("<hr><h2>Pet Information</h2><p><b><img height=200px src='\(String(describing: pets?.petImageUrl) )'></b></p>Name: \(pets?.name ?? "")</br></br>Gender: \(pets?.gender ?? "")</br></br>Pet Type: \(pets?.petType ?? "")</br></br>Breed: \(pets?.breed ?? "")</br></br>Color: \(pets?.color ?? "")</br></br>Birthday: \(pets?.birthday ?? "")</br></br><hr><h2>Care Information</h2>Outside Schedule: \(pets?.outsideSchedule ?? "")</br></br>Primary Food: \(pets?.primaryFood ?? "")</br></br>Allergies: \(pets?.allergies ?? "")</br></br><hr><h2>Medical Information</h2>Spayed/Neutered: \(pets?.spayedNeutered.description ?? "")</br></br>Microchip: \(pets?.microchip ?? "")</br></br>Vet Name & Contact: \(pets?.vetName ?? "")</br></br>Medications: \(pets?.medications ?? "")</br></br>Emergency Contact: \(pets?.emergencyContact ?? "")</br></br><hr><h2>Additional Information</h2>Additional Info: \(additionalInfoTextView.text ?? "")</br></br><hr>", isHTML: true)
-
-            guard let petUid = pets?.petUid else { return }
-            print(petUid)
-            let imageStorageRef = Storage.storage().reference().child("petImageUrl/\(petUid)")
-            imageStorageRef.downloadURL { (url, error) in
-                guard let imageUrl = url, error == nil else { return }
-                print("imageUrl: \(imageUrl)")
-                guard let data = NSData(contentsOf: imageUrl) else { return }
-                let image = UIImage(data: data as Data)
-                print("image: \(image)")
-                if let image = image, let imageData = image.jpegData(compressionQuality: 0.5) {
-                    mail.addAttachmentData(imageData, mimeType: "jpeg", fileName: "petphoto.jpeg")
-                    print("has image")
-                } else {
-                    print("No image to send")
-                }
-            }
-//            imageStorageRef.getData(maxSize: 2 * 1024 * 1024) { data, error in
-//                if error == nil, let data = data {
-//                    self.image = UIImage(data: data)
-//                    if let image = self.image, let imageData = image.jpegData(compressionQuality: 0.5) {
-//                        mail.addAttachmentData(imageData, mimeType: "jpeg", fileName: "petphoto.jpeg")
-//                    } else {
-//                        print("No image to send")
-//                    }
-//                }
-//            }
+            mail.setMessageBody("<hr><h2>Pet Information</h2><p><b><img height=200px width=auto src='\(String(describing: petImageUrl ?? "") )'></b></p>Name: \(pets?.name ?? "")</br></br>Gender: \(pets?.gender ?? "")</br></br>Pet Type: \(pets?.petType ?? "")</br></br>Breed: \(pets?.breed ?? "")</br></br>Color: \(pets?.color ?? "")</br></br>Birthday: \(pets?.birthday ?? "")</br></br><hr><h2>Care Information</h2>Outside Schedule: \(pets?.outsideSchedule ?? "")</br></br>Primary Food: \(pets?.primaryFood ?? "")</br></br>Allergies: \(pets?.allergies ?? "")</br></br><hr><h2>Medical Information</h2>Spayed/Neutered: \(pets?.spayedNeutered.description ?? "")</br></br>Microchip: \(pets?.microchip ?? "")</br></br>Vet Name & Contact: \(pets?.vetName ?? "")</br></br>Medications: \(pets?.medications ?? "")</br></br>Emergency Contact: \(pets?.emergencyContact ?? "")</br></br><hr><h2>Additional Information</h2>Additional Info: \(additionalInfoTextView.text ?? "")</br></br><hr>", isHTML: true)
             present(mail, animated: true, completion: nil)
         } else {
             print("Device cannot send email.")
