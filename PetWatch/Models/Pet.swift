@@ -25,9 +25,10 @@ class Pet {
     var vetName: String
     var medications: String
     var emergencyContact: String
+    var petImageUrl: String?
     
 
-    init(petUid: String, userUid: String, profileImage: UIImage? = UIImage(), name: String, gender: String, petType: String, breed: String, color: String, birthday: String, outsideSchedule: String, primaryFood: String, allergies: String, spayedNeutered: Bool, microchip: String, vetName: String, medications: String, emergencyContact: String) {
+    init(petUid: String, userUid: String, profileImage: UIImage? = UIImage(), name: String, gender: String, petType: String, breed: String, color: String, birthday: String, outsideSchedule: String, primaryFood: String, allergies: String, spayedNeutered: Bool, microchip: String, vetName: String, medications: String, emergencyContact: String, petImageUrl: String = "") {
 
         self.petUid = petUid
         self.userUid = userUid
@@ -46,6 +47,7 @@ class Pet {
         self.vetName = vetName
         self.medications = medications
         self.emergencyContact = emergencyContact
+        self.petImageUrl = petImageUrl
     }
 }
 

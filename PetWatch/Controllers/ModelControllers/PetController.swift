@@ -41,10 +41,12 @@ class PetController {
                 completion(.failure(.fbUserError(error)))
                 return
             }
-            self.storageRef.downloadURL { (url, error) in
-                print(url?.absoluteString)
-            }
-            completion(.success(true))
+            self.storageRef.child("petProfileImage").child(filename).downloadURL(completion: { (downloadURL, err) in
+                guard let petImageUrl = downloadURL?.absoluteString else { return }
+                print(petImageUrl)
+                Firestore.firestore().collection("pets").document(filename).setData(["imageUrl": petImageUrl], merge: true)
+                completion(.success(true))
+            })
         })
     }
     
@@ -72,8 +74,9 @@ class PetController {
                           let emergencyContact = dictionary["emergencyContact"] as? String,
                           let userUid = dictionary["userUid"] as? String,
                           let petUid = dictionary["petUid"] as? String else { return }
+                    let imageUrl = dictionary["imageUrl"] as? String ?? ""
                     
-                    let getPetInfo = Pet(petUid: petUid, userUid: userUid, name: name, gender: gender, petType: petType, breed: breed, color: color, birthday: birthday, outsideSchedule: outsideSchedule, primaryFood: primaryFood, allergies: allergies, spayedNeutered: spayedNeutered, microchip: microchip, vetName: vetName, medications: medications, emergencyContact: emergencyContact)
+                    let getPetInfo = Pet(petUid: petUid, userUid: userUid, name: name, gender: gender, petType: petType, breed: breed, color: color, birthday: birthday, outsideSchedule: outsideSchedule, primaryFood: primaryFood, allergies: allergies, spayedNeutered: spayedNeutered, microchip: microchip, vetName: vetName, medications: medications, emergencyContact: emergencyContact, petImageUrl: imageUrl)
                     self.pets.append(getPetInfo)
                 }
                 completion(true)
