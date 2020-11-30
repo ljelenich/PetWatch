@@ -17,19 +17,15 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
     }
     
     //MARK: - Outlets
-
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var additionalInfoTextView: UITextView!
     @IBOutlet weak var sharePetButton: UIButton!
     
     //MARK: - Properties
-    
     var pets: Pet?
-    
     private var rows: [Row] = []
     
     //MARK: - Lifecycle Functions
-
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -50,7 +46,6 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
     }
     
     //MARK: - Actions
-    
     @IBAction func shareInfoButtonTapped(_ sender: Any) {
         sendEmail()
     }
