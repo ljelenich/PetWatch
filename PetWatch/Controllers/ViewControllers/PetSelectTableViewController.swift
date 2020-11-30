@@ -23,6 +23,7 @@ class PetSelectTableViewController: UITableViewController {
         super.viewDidLoad()
         fetchPets()
         setupViews()
+        PetController.shared.pets.removeAll()
     }
     
     // MARK: - Actions

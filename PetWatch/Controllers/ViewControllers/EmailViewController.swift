@@ -94,11 +94,6 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
                     }
                 }
             }
-//            if let image = image, let imageData = image.jpegData(compressionQuality: 0.5) {
-//                mail.addAttachmentData(imageData, mimeType: "jpeg", fileName: "petphoto.jpeg")
-//            } else {
-//                print("No image to send")
-//            }
             present(mail, animated: true, completion: nil)
         } else {
             print("Device cannot send email.")
