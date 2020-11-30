@@ -41,6 +41,9 @@ class PetController {
                 completion(.failure(.fbUserError(error)))
                 return
             }
+            self.storageRef.downloadURL { (url, error) in
+                print(url?.absoluteString)
+            }
             completion(.success(true))
         })
     }
