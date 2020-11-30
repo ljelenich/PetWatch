@@ -243,9 +243,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DMQ-9r-EVg">
                                 <rect key="frame" x="0.0" y="96" width="414" height="653"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="653" id="Qga-Ch-YTk"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="petCell" rowHeight="116" id="liB-GE-aXB" customClass="PetListTableViewCell" customModule="PetWatch" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="116"/>
@@ -254,37 +251,39 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="116"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="02X-gh-DCp">
-                                                    <rect key="frame" x="8" y="8" width="208" height="100"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="Tmd-fR-0hQ">
+                                                    <rect key="frame" x="8" y="8" width="100" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="3DJ-L4-5FW"/>
+                                                        <constraint firstAttribute="height" constant="100" id="xb4-V0-geo"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="1" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kcZ-hj-hJV">
+                                                    <rect key="frame" x="116" y="15" width="290" height="86"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="Tmd-fR-0hQ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                                                        </imageView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="-32" translatesAutoresizingMaskIntoConstraints="NO" id="ZCm-iS-JAj">
-                                                            <rect key="frame" x="108" y="0.0" width="100" height="100"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pet Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H8b-CJ-xhm">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="66"/>
-                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pet Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLZ-dG-ONH">
-                                                                    <rect key="frame" x="0.0" y="34" width="100" height="66"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                        </stackView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pet Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H8b-CJ-xhm">
+                                                            <rect key="frame" x="0.0" y="0.0" width="85.5" height="53"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pet Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLZ-dG-ONH">
+                                                            <rect key="frame" x="0.0" y="33" width="67" height="53"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="02X-gh-DCp" firstAttribute="top" secondItem="lDe-jz-8hh" secondAttribute="topMargin" constant="-3" id="04g-xw-h6P"/>
-                                                <constraint firstItem="02X-gh-DCp" firstAttribute="leading" secondItem="lDe-jz-8hh" secondAttribute="leading" constant="8" id="4Cz-zy-SS2"/>
-                                                <constraint firstAttribute="trailing" secondItem="02X-gh-DCp" secondAttribute="trailing" constant="198" id="FMH-Pj-OZw"/>
-                                                <constraint firstItem="02X-gh-DCp" firstAttribute="centerY" secondItem="lDe-jz-8hh" secondAttribute="centerY" id="hyO-3y-Agc"/>
+                                                <constraint firstAttribute="bottom" secondItem="kcZ-hj-hJV" secondAttribute="bottom" constant="15" id="1In-6Z-uAk"/>
+                                                <constraint firstItem="Tmd-fR-0hQ" firstAttribute="leading" secondItem="lDe-jz-8hh" secondAttribute="leading" constant="8" id="6mF-oG-3cF"/>
+                                                <constraint firstItem="Tmd-fR-0hQ" firstAttribute="top" secondItem="lDe-jz-8hh" secondAttribute="top" constant="8" id="IfF-Wt-4YW"/>
+                                                <constraint firstItem="kcZ-hj-hJV" firstAttribute="leading" secondItem="Tmd-fR-0hQ" secondAttribute="trailing" constant="8" id="Od8-yx-vz7"/>
+                                                <constraint firstAttribute="bottom" secondItem="Tmd-fR-0hQ" secondAttribute="bottom" constant="8" id="XV4-UL-7xb"/>
+                                                <constraint firstAttribute="trailing" secondItem="kcZ-hj-hJV" secondAttribute="trailing" constant="8" id="kAo-EA-NhA"/>
+                                                <constraint firstItem="kcZ-hj-hJV" firstAttribute="top" secondItem="lDe-jz-8hh" secondAttribute="top" constant="15" id="rDh-48-gef"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
