@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseStorage
+import Kingfisher
 
 class PetListTableViewCell: UITableViewCell {
     
@@ -31,13 +32,17 @@ class PetListTableViewCell: UITableViewCell {
         petNameLabel.text = "\(pet.name)"
         petBreedLabel.text = "\(pet.breed)"
         
-        let petUid = pet.petUid
-        let imageStorageRef = Storage.storage().reference().child("petProfileImage/\(petUid)")
-        imageStorageRef.getData(maxSize: 2 * 1024 * 1024) { data, error in
-            if error == nil, let data = data {
-                self.petImageView.image = UIImage(data: data)
+        if pet.petImageUrl == "" {
+            petImageView.image = UIImage(named: "PetWatchLogo")
+            print("nada")
+        } else {
+            guard let imageUrl = pet.petImageUrl else { return }
+            if let url = URL(string: imageUrl) {
+                let placeholder = UIImage(named: "PetWatchLogo")
+                petImageView.kf.indicatorType = .activity
+                let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.2))]
+                petImageView.kf.setImage(with: url, placeholder: placeholder, options: options)
             }
         }
     }
-
 }

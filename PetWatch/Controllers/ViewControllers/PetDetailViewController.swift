@@ -22,11 +22,11 @@ class PetDetailViewController: UIViewController {
     @IBOutlet weak var selectImageButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    
     // MARK: - Properties
     var pets: Pet?
     private var rows: [Row] = []
     let profileImagePicker = UIImagePickerController()
+    static let updateNotificationName = NSNotification.Name(rawValue: "Update")
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -44,7 +44,6 @@ class PetDetailViewController: UIViewController {
     }
 
     // MARK: - Navigation
-    
     func showEditPetProfile() {
         let stroyboard = UIStoryboard(name: "Main", bundle: nil)
         let updatePetVC = stroyboard.instantiateViewController(identifier: "") as! AddPetViewController
@@ -135,6 +134,7 @@ extension PetDetailViewController: UIImagePickerControllerDelegate, UINavigation
                 switch result {
                 case .success(_):
                     print("photo was success")
+                    NotificationCenter.default.post(name: PetDetailViewController.updateNotificationName, object: nil)
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
