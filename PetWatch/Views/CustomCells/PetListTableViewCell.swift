@@ -30,14 +30,16 @@ class PetListTableViewCell: UITableViewCell {
         guard let pet = pet else { return }
         petNameLabel.text = "\(pet.name)"
         petBreedLabel.text = "\(pet.breed)"
-        
-        let petUid = pet.petUid
-        let imageStorageRef = Storage.storage().reference().child("petProfileImage/\(petUid)")
-        imageStorageRef.getData(maxSize: 2 * 1024 * 1024) { data, error in
-            if error == nil, let data = data {
-                self.petImageView.image = UIImage(data: data)
+        if pet.petImageUrl == nil {
+            petImageView.image = UIImage(named: "PetWatchLogo")
+        } else {
+            let petUid = pet.petUid
+            let imageStorageRef = Storage.storage().reference().child("petProfileImage/\(petUid)")
+            imageStorageRef.getData(maxSize: 2 * 1024 * 1024) { data, error in
+                if error == nil, let data = data {
+                    self.petImageView.image = UIImage(data: data)
+                }
             }
         }
     }
-
 }
