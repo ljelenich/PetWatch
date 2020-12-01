@@ -18,6 +18,17 @@ class LoginSignupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        dismissKeyboardOnTap()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.addKeyboardObserver()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.removeKeyboardObserver()
     }
     
     //MARK: - Actions
@@ -34,6 +45,11 @@ class LoginSignupViewController: UIViewController {
     }
     
     //MARK: - Helper Functions
+    func dismissKeyboardOnTap() {
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        view.addGestureRecognizer(tap)
+    }
+    
     func setupViews() {
         self.view.backgroundColor = UIColor(named: "lightGreyColor")
     }
