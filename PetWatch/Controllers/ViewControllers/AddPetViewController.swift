@@ -29,6 +29,7 @@ class AddPetViewController: UIViewController {
     
     //MARK: - Properties
     var petUid: String?
+    static let updateNotificationName = NSNotification.Name(rawValue: "Update")
     var pet: Pet? {
         didSet {
             guard let pet = pet else { return }
@@ -123,6 +124,7 @@ class AddPetViewController: UIViewController {
                 }
             }
         }
+        NotificationCenter.default.post(name: AddPetViewController.updateNotificationName, object: nil)
     }
     
     func dismiss() {
