@@ -16,18 +16,19 @@ class PetListTableViewController: UIViewController {
     
     //MARK: - Properties
     
-    var refresh: UIRefreshControl = UIRefreshControl()
+//    var refresh: UIRefreshControl = UIRefreshControl()
     
     //MARK: - Lifecycle Functions
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        refreshViews()
-    }
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+////        refreshViews()
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        handleUpdate()
         fetchPets()
         setupViews()
     }
@@ -47,6 +48,17 @@ class PetListTableViewController: UIViewController {
     }
     
     //MARK: - Helper Functions
+    func handleUpdate() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleNewPet), name: AddPetViewController.updateNotificationName, object: nil)
+    }
+    
+    @objc func handleNewPet() {
+        PetController.shared.pets.removeAll()
+        fetchPets()
+        tableView.reloadData()
+    }
+
+    
     func setupViews() {
         self.tableView.backgroundColor = UIColor(named: "lightGreyColor")
         self.view.backgroundColor = UIColor(named: "lightGreyColor")
@@ -60,7 +72,7 @@ class PetListTableViewController: UIViewController {
             case true:
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
-                    self.refresh.endRefreshing()
+//                    self.refresh.endRefreshing()
                 }
             case false:
                 print("error")
@@ -68,16 +80,16 @@ class PetListTableViewController: UIViewController {
         }
     }
     
-    func refreshViews() {
-        refresh.attributedTitle = NSAttributedString(string: "Pull to see updated pet list.")
-        refresh.addTarget(self, action: #selector(updateViews), for: .valueChanged)
-        tableView.addSubview(refresh)
-    }
-    
-    @objc func updateViews() {
-        fetchPets()
-        PetController.shared.pets.removeAll()
-    }
+//    func refreshViews() {
+//        refresh.attributedTitle = NSAttributedString(string: "Pull to see updated pet list.")
+//        refresh.addTarget(self, action: #selector(updateViews), for: .valueChanged)
+//        tableView.addSubview(refresh)
+//    }
+//
+//    @objc func updateViews() {
+//        fetchPets()
+//        PetController.shared.pets.removeAll()
+//    }
     
     func handleLogout() {
         DispatchQueue.main.async {

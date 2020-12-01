@@ -10,7 +10,6 @@ import UIKit
 class Pet {
     var petUid: String
     var userUid: String
-    var profileImage: UIImage?
     var name: String
     var gender: String
     var petType: String
@@ -28,11 +27,10 @@ class Pet {
     var petImageUrl: String?
     
 
-    init(petUid: String, userUid: String, profileImage: UIImage? = UIImage(), name: String, gender: String, petType: String, breed: String, color: String, birthday: String, outsideSchedule: String, primaryFood: String, allergies: String, spayedNeutered: Bool, microchip: String, vetName: String, medications: String, emergencyContact: String, petImageUrl: String = "") {
-
+    init(petUid: String, userUid: String, name: String, gender: String, petType: String, breed: String, color: String, birthday: String, outsideSchedule: String, primaryFood: String, allergies: String, spayedNeutered: Bool, microchip: String, vetName: String, medications: String, emergencyContact: String, petImageUrl: String = "") {
+ 
         self.petUid = petUid
         self.userUid = userUid
-        self.profileImage = profileImage
         self.name = name
         self.gender = gender
         self.petType = petType
