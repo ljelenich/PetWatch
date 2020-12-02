@@ -75,7 +75,6 @@ class PetController {
                           let userUid = dictionary["userUid"] as? String,
                           let petUid = dictionary["petUid"] as? String else { return }
                     let imageUrl = dictionary["imageUrl"] as? String ?? ""
-                    
                     let getPetInfo = Pet(petUid: petUid, userUid: userUid, name: name, gender: gender, petType: petType, breed: breed, color: color, birthday: birthday, outsideSchedule: outsideSchedule, primaryFood: primaryFood, allergies: allergies, spayedNeutered: spayedNeutered, microchip: microchip, vetName: vetName, medications: medications, emergencyContact: emergencyContact, petImageUrl: imageUrl)
                     self.pets.append(getPetInfo)
                 }

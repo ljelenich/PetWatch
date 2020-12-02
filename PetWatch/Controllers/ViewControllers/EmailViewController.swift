@@ -103,7 +103,6 @@ class EmailViewController: UIViewController, MFMailComposeViewControllerDelegate
 }
 
 //MARK: - Email Extension
-
 extension EmailViewController {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
@@ -111,7 +110,6 @@ extension EmailViewController {
 }
 
 //MARK: - Keyboard Extensions
-
 extension UIViewController {
     func addKeyboardObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardNotifications(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
@@ -153,9 +151,7 @@ extension UIViewController {
 }
 
 extension UIResponder {
-
     static weak var responder: UIResponder?
-
     static func currentFirst() -> UIResponder? {
         responder = nil
         UIApplication.shared.sendAction(#selector(trap), to: nil, from: nil, for: nil)
@@ -168,17 +164,13 @@ extension UIResponder {
 }
 
 //MARK: - Table View Extension
-
 extension EmailViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return rows.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "petEmailCell", for: indexPath)
-        
         let row = rows[indexPath.row]
         cell.textLabel?.text = row.title
         cell.detailTextLabel?.text = row.value

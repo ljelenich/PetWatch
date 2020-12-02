@@ -95,6 +95,5 @@ class PetSelectTableViewController: UITableViewController {
             destinationVC?.pets = petToEmail
         }
     }
-
 }
 

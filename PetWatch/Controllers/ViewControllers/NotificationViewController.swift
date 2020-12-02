@@ -141,7 +141,6 @@ class NotificationViewController: UIViewController {
         } else {
             saveToFirestore(alertUid: identifier, title: title, dateTime: setDateTime)
         }
-        
     }
     
     func saveToFirestore(alertUid: String, title: String, dateTime: String) {

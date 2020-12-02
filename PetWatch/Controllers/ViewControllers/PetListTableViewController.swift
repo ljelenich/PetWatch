@@ -54,7 +54,6 @@ class PetListTableViewController: UIViewController {
         self.view.backgroundColor = UIColor(named: "lightGreyColor")
     }
     
-    
     func fetchPets() {
         guard let userUid = Auth.auth().currentUser?.uid else { return }
         PetController.shared.fetchPets(userUid: userUid) { (success) in

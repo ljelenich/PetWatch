@@ -75,7 +75,6 @@ class PetDetailViewController: UIViewController {
         selectImageButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         selectImageButton.setTitleColor(.white, for: .normal)
         selectImageButton.backgroundColor = .clear
-        
         guard let petUid = pets?.petUid else { return }
         let imageStorageRef = Storage.storage().reference().child("petProfileImage/\(petUid)")
         imageStorageRef.getData(maxSize: 2 * 1024 * 1024) { data, error in
@@ -113,12 +112,10 @@ extension PetDetailViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "petDetailsCell", for: indexPath)
-        
         let row = rows[indexPath.row]
         cell.textLabel?.text = row.title
         cell.detailTextLabel?.text = row.value
         cell.backgroundColor = UIColor(named: "lightGreyColor")
-        
         return cell
     }
 }
@@ -148,7 +145,6 @@ extension PetDetailViewController: UIImagePickerControllerDelegate, UINavigation
     
     func presentImagePickerActionSheet() {
         let actionSheet = UIAlertController(title: "Pick a photo", message: nil, preferredStyle: .actionSheet)
-        
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             actionSheet.addAction(UIAlertAction(title: "Photos", style: .default, handler: { (_) in
                 self.profileImagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
