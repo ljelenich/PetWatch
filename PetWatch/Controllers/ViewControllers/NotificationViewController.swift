@@ -141,6 +141,7 @@ class NotificationViewController: UIViewController {
         } else {
             saveToFirestore(alertUid: identifier, title: title, dateTime: setDateTime)
         }
+        NotificationCenter.default.post(name: NotificationViewController.updateNotificationName, object: nil)
     }
     
     func saveToFirestore(alertUid: String, title: String, dateTime: String) {
