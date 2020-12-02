@@ -21,6 +21,18 @@ class NotificationListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchNotifications()
+        handleUpdate()
+    }
+    
+    //MARK: - Helper Functions
+    func handleUpdate() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleNewPet), name: NotificationViewController.updateNotificationName, object: nil)
+    }
+    
+    @objc func handleNewPet() {
+        NotificationController.shared.notifications.removeAll()
+        fetchNotifications()
+        tableView.reloadData()
     }
     
     func refreshViews() {
