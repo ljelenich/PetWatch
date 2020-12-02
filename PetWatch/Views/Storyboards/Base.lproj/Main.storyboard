@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="o6q-QP-er7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="o6q-QP-er7">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -74,7 +73,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vok-kB-15H">
-                                <rect key="frame" x="8" y="96" width="398" height="459"/>
+                                <rect key="frame" x="8" y="96" width="398" height="444"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="petEmailCell" textLabel="m02-pj-ApO" detailTextLabel="jdZ-tI-L2w" style="IBUITableViewCellStyleValue1" id="kVs-is-mm5">
@@ -104,11 +103,14 @@
                                 </prototypes>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="aVs-Du-G9v">
-                                <rect key="frame" x="8" y="767" width="398" height="30"/>
+                                <rect key="frame" x="8" y="752" width="398" height="45"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ron-jc-Xhk">
-                                        <rect key="frame" x="0.0" y="0.0" width="398" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="398" height="45"/>
                                         <color key="backgroundColor" name="grayColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="QcA-48-nfF"/>
+                                        </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Share Pet Information"/>
                                         <connections>
@@ -118,7 +120,7 @@
                                 </subviews>
                             </stackView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rqN-7S-HSx">
-                                <rect key="frame" x="8" y="563" width="398" height="140"/>
+                                <rect key="frame" x="8" y="548" width="398" height="140"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="140" id="ryY-tG-At0"/>
@@ -435,53 +437,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KrB-KE-Kvm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2202.898550724638" y="-861.16071428571422"/>
-        </scene>
-        <!--Photo Gallery View Controller-->
-        <scene sceneID="akd-fD-K0r">
-            <objects>
-                <viewController id="Esg-a4-a56" customClass="PhotoGalleryViewController" customModule="PetWatch" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="QPe-kF-Yly">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3dK-BG-M3N">
-                                <rect key="frame" x="0.0" y="44" width="414" height="754"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jVi-hh-ppY">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionViewCell" id="h3Z-VE-j2c">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="GYJ-PO-ATd">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="bk9-vl-UbV"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="bk9-vl-UbV" firstAttribute="bottom" secondItem="3dK-BG-M3N" secondAttribute="bottom" constant="64" id="Fkn-aW-6b2"/>
-                            <constraint firstItem="bk9-vl-UbV" firstAttribute="trailing" secondItem="3dK-BG-M3N" secondAttribute="trailing" id="i5j-6M-sCC"/>
-                            <constraint firstItem="3dK-BG-M3N" firstAttribute="leading" secondItem="bk9-vl-UbV" secondAttribute="leading" id="vEp-4I-Z61"/>
-                            <constraint firstItem="3dK-BG-M3N" firstAttribute="top" secondItem="bk9-vl-UbV" secondAttribute="top" id="whi-BS-hRU"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="Pjb-pU-buv"/>
-                    <connections>
-                        <outlet property="collectionView" destination="3dK-BG-M3N" id="U6e-24-Ao1"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9Uy-Sp-d5Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3039" y="-861"/>
         </scene>
         <!--Add A Pet-->
         <scene sceneID="RN7-rQ-h9e">

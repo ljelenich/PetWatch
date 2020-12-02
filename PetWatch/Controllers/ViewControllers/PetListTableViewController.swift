@@ -11,19 +11,9 @@ import FirebaseAuth
 class PetListTableViewController: UIViewController {
     
     //MARK: - Outlets
-
     @IBOutlet weak var tableView: UITableView!
     
-    //MARK: - Properties
-    
-//    var refresh: UIRefreshControl = UIRefreshControl()
-    
     //MARK: - Lifecycle Functions
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-////        refreshViews()
-//    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -64,7 +54,6 @@ class PetListTableViewController: UIViewController {
         self.view.backgroundColor = UIColor(named: "lightGreyColor")
     }
     
-    
     func fetchPets() {
         guard let userUid = Auth.auth().currentUser?.uid else { return }
         PetController.shared.fetchPets(userUid: userUid) { (success) in
@@ -79,18 +68,7 @@ class PetListTableViewController: UIViewController {
             }
         }
     }
-    
-//    func refreshViews() {
-//        refresh.attributedTitle = NSAttributedString(string: "Pull to see updated pet list.")
-//        refresh.addTarget(self, action: #selector(updateViews), for: .valueChanged)
-//        tableView.addSubview(refresh)
-//    }
-//
-//    @objc func updateViews() {
-//        fetchPets()
-//        PetController.shared.pets.removeAll()
-//    }
-    
+
     func handleLogout() {
         DispatchQueue.main.async {
             let viewController: UIViewController = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "loginVC")

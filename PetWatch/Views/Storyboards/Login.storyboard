@@ -48,13 +48,14 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aU2-iO-1nx">
                                 <rect key="frame" x="200.5" y="523" width="165.5" height="45"/>
-                                <color key="backgroundColor" name="grayColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="2fQ-XH-Pi4"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Forgot Password?"/>
+                                <state key="normal" title="Forgot Password?">
+                                    <color key="titleColor" name="grayColor"/>
+                                </state>
                                 <connections>
                                     <action selector="forgotPasswordButtonTapped:" destination="098-Fw-Rie" eventType="touchUpInside" id="W9s-Rm-cCH"/>
                                 </connections>
