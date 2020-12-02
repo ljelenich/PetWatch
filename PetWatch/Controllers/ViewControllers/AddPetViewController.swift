@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseAuth
 
-class AddPetViewController: UIViewController {
+class AddPetViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: - Outlets
     @IBOutlet weak var nameTextField: UITextField!
@@ -40,7 +40,7 @@ class AddPetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         populateFields()
-        setupViews()
+        setupViewsAndDelegates()
         dismissKeyboardOnTap()
     }
     
@@ -61,8 +61,59 @@ class AddPetViewController: UIViewController {
     }
     
     //MARK: - Helper Functions
-    func setupViews() {
+    func setupViewsAndDelegates() {
         self.view.backgroundColor = UIColor(named: "lightGreyColor")
+        nameTextField.delegate = self
+        genderTextField.delegate = self
+        petTypeTextField.delegate = self
+        breedTextField.delegate = self
+        colorTextField.delegate = self
+        birthdayTextField.delegate = self
+        outsideScheduleTextField.delegate = self
+        primaryFoodTextField.delegate = self
+        allergiesTextField.delegate = self
+        microchipTextField.delegate = self
+        vetNameAndPhoneTextField.delegate = self
+        medicationsTextField.delegate = self
+        emergencyContactTextField.delegate = self
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.switchBasedNextTextField(textField)
+        return true
+    }
+    
+    private func switchBasedNextTextField(_ textField: UITextField) {
+        switch textField {
+        case self.nameTextField:
+            self.genderTextField.becomeFirstResponder()
+        case self.genderTextField:
+            self.petTypeTextField.becomeFirstResponder()
+        case self.petTypeTextField:
+            self.breedTextField.becomeFirstResponder()
+        case self.breedTextField:
+            self.colorTextField.becomeFirstResponder()
+        case self.colorTextField:
+            self.birthdayTextField.becomeFirstResponder()
+        case self.birthdayTextField:
+            self.outsideScheduleTextField.becomeFirstResponder()
+        case self.outsideScheduleTextField:
+            self.primaryFoodTextField.becomeFirstResponder()
+        case self.primaryFoodTextField:
+            self.allergiesTextField.becomeFirstResponder()
+        case self.allergiesTextField:
+            self.microchipTextField.becomeFirstResponder()
+        case self.microchipTextField:
+            self.vetNameAndPhoneTextField.becomeFirstResponder()
+        case self.vetNameAndPhoneTextField:
+            self.medicationsTextField.becomeFirstResponder()
+        case self.medicationsTextField:
+            self.emergencyContactTextField.becomeFirstResponder()
+        case self.emergencyContactTextField:
+            self.view.endEditing(true)
+        default:
+            self.view.endEditing(true)
+        }
     }
     
     func dismissKeyboardOnTap() {
