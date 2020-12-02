@@ -11,7 +11,6 @@ import FirebaseAuth
 class AddPetViewController: UIViewController {
     
     //MARK: - Outlets
-    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var genderTextField: UITextField!
     @IBOutlet weak var petTypeTextField: UITextField!
@@ -38,7 +37,6 @@ class AddPetViewController: UIViewController {
     }
     
     //MARK: - Lifecycle Functions
-
     override func viewDidLoad() {
         super.viewDidLoad()
         populateFields()

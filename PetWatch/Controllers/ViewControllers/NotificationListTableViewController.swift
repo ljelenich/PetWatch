@@ -11,6 +11,7 @@ import FirebaseFirestore
 
 class NotificationListTableViewController: UITableViewController {
 
+    //MARK: - Properties
     var refresh: UIRefreshControl = UIRefreshControl()
     
     override func viewDidLayoutSubviews() {
@@ -18,6 +19,7 @@ class NotificationListTableViewController: UITableViewController {
         refreshViews()
     }
     
+    //MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchNotifications()
@@ -51,7 +53,6 @@ class NotificationListTableViewController: UITableViewController {
                     self.tableView.reloadData()
                     self.refresh.endRefreshing()
                 }
-                
             case false:
                 print("error")
             }
