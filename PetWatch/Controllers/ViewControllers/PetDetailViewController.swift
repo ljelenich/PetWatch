@@ -151,12 +151,6 @@ extension PetDetailViewController: UIImagePickerControllerDelegate, UINavigation
                 self.present(self.profileImagePicker, animated: true, completion: nil)
             }))
         }
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (_) in
-                self.profileImagePicker.sourceType = UIImagePickerController.SourceType.camera
-                self.present(self.profileImagePicker, animated: true)
-            }))
-        }
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         present(actionSheet, animated: true)
     }
