@@ -24,15 +24,6 @@ class PetListTableViewController: UIViewController {
     }
     
     //MARK: - Actions
-    @IBAction func logOutButtonTapped(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-            handleLogout()
-        } catch let signOutErr {
-            print("Failed to sign out:", signOutErr)
-        }
-    }
-    
     @IBAction func aspcaInfoButtonTapped(_ sender: Any) {
         UIApplication.shared.open(URL(string: "https://www.aspca.org/pet-care/general-pet-care/emergency-care-your-pet")! as URL, options: [:], completionHandler: nil)
     }
@@ -69,18 +60,9 @@ class PetListTableViewController: UIViewController {
             }
         }
     }
-
-    func handleLogout() {
-        DispatchQueue.main.async {
-            let viewController: UIViewController = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "loginVC")
-            viewController.modalPresentationStyle = .fullScreen
-            self.present(viewController, animated: true)
-        }
-    }
 }
 
 //MARK: - Table View Entension
-
 extension PetListTableViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

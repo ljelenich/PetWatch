@@ -333,11 +333,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Pets" id="r8N-Sj-LOb">
-                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="aVN-BA-M9g">
-                            <connections>
-                                <action selector="logOutButtonTapped:" destination="Z8K-Jx-yNu" id="wfR-CX-tpE"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="NzC-HC-Xp9">
                             <connections>
                                 <segue destination="aEA-aa-N0F" kind="show" id="4u9-p9-fFN"/>
