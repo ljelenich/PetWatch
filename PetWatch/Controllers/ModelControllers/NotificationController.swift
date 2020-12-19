@@ -22,8 +22,8 @@ class NotificationController {
     var notifications: [Notification] = []
     
     //MARK: - CRUD Functions
-    func createNotification(userUid: String, alertUid: String, title: String, dateTime: String, completion: @escaping (Result<Bool, NotificationError>) -> Void) {
-        firestoreDB.document(alertUid).setData(["userUid": userUid, "alertUid": alertUid, "title": title, "dateTime": dateTime]) { error in
+    func createNotification(userUid: String, alertUid: String, title: String, details: String, dateTime: String, completion: @escaping (Result<Bool, NotificationError>) -> Void) {
+        firestoreDB.document(alertUid).setData(["userUid": userUid, "alertUid": alertUid, "title": title, "dateTime": dateTime, "details": details]) { error in
             if let error = error {
                 print("Error writing document: \(error)")
                 completion(.failure(.fbUserError(error)))
@@ -46,8 +46,9 @@ class NotificationController {
                     let userUid = dictionary["userUid"] as? String ?? ""
                     let alertUid = dictionary["alertUid"] as? String ?? ""
                     let title = dictionary["title"] as? String ?? ""
+                    let details = dictionary["details"] as? String ?? ""
                     let dateTime = dictionary["dateTime"] as? String ?? ""
-                    let getNotifications = Notification(userUid: userUid, alertUid: alertUid, title: title, dateTime: dateTime)
+                    let getNotifications = Notification(userUid: userUid, alertUid: alertUid, title: title, details: details, dateTime: dateTime)
                     self.notifications.append(getNotifications)
                 }
                 completion(true)
@@ -55,7 +56,7 @@ class NotificationController {
         }
     }
     
-    func updateNotification(alertUid: String, title: String, dateTime: String, completion: @escaping (Result<Notification?, NotificationError>) -> Void) {
+    func updateNotification(alertUid: String, title: String, details: String, dateTime: String, completion: @escaping (Result<Notification?, NotificationError>) -> Void) {
         self.firestoreDB.document(alertUid).setData(["title": title, "dateTime": dateTime], merge: true) { error in
             if let error = error {
                 print("There was an error updating data: \(error.localizedDescription)")

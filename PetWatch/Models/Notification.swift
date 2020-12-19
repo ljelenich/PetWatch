@@ -11,13 +11,15 @@ class Notification {
     let userUid: String
     let alertUid: String
     let title: String
+    let details: String
     let dateTime: String
 
-    init(userUid: String, alertUid: String, title: String, dateTime: String) {
+    init(userUid: String, alertUid: String, title: String, details: String, dateTime: String) {
         self.userUid = userUid
         self.alertUid = alertUid
         self.title = title
         self.dateTime = dateTime
+        self.details = details
     }
 }
 

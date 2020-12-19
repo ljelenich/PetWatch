@@ -166,13 +166,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="0Lk-sa-Kr3">
-                                <rect key="frame" x="10" y="218" width="394" height="216"/>
+                                <rect key="frame" x="10" y="303" width="394" height="216"/>
                                 <connections>
                                     <action selector="datePickerPressed:" destination="Z1E-Ag-kvI" eventType="valueChanged" id="mss-cR-0Ps"/>
                                 </connections>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SvM-GF-b51">
-                                <rect key="frame" x="20" y="459" width="374" height="45"/>
+                                <rect key="frame" x="20" y="544" width="374" height="45"/>
                                 <color key="backgroundColor" name="grayColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="3md-N4-ioY"/>
@@ -191,8 +191,16 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Details" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2ua-qp-a2U">
+                                <rect key="frame" x="10" y="178" width="394" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="7Bv-8x-GJM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Data and time" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uEI-8p-zzy">
-                                <rect key="frame" x="10" y="163" width="394" height="45"/>
+                                <rect key="frame" x="10" y="248" width="394" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="O4W-0l-05T"/>
                                 </constraints>
@@ -203,18 +211,21 @@
                         <viewLayoutGuide key="safeArea" id="lNo-np-0Fe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="2ua-qp-a2U" firstAttribute="leading" secondItem="lNo-np-0Fe" secondAttribute="leading" constant="10" id="AWa-D1-wmg"/>
                             <constraint firstItem="uTl-pn-5ja" firstAttribute="top" secondItem="lNo-np-0Fe" secondAttribute="top" constant="20" id="BZ2-El-b17"/>
-                            <constraint firstItem="uEI-8p-zzy" firstAttribute="top" secondItem="uTl-pn-5ja" secondAttribute="bottom" constant="10" id="D9j-Ym-69I"/>
                             <constraint firstItem="SvM-GF-b51" firstAttribute="leading" secondItem="lNo-np-0Fe" secondAttribute="leading" constant="20" id="Dya-Ni-jjo"/>
+                            <constraint firstItem="uEI-8p-zzy" firstAttribute="top" secondItem="2ua-qp-a2U" secondAttribute="bottom" constant="25" id="EZt-pR-5Fz"/>
                             <constraint firstItem="lNo-np-0Fe" firstAttribute="trailing" secondItem="uEI-8p-zzy" secondAttribute="trailing" constant="10" id="JI6-GQ-h9s"/>
                             <constraint firstItem="0Lk-sa-Kr3" firstAttribute="leading" secondItem="lNo-np-0Fe" secondAttribute="leading" constant="10" id="NzP-QQ-Hoe"/>
                             <constraint firstItem="lNo-np-0Fe" firstAttribute="trailing" secondItem="0Lk-sa-Kr3" secondAttribute="trailing" constant="10" id="Pko-xU-F0Q"/>
                             <constraint firstItem="lNo-np-0Fe" firstAttribute="trailing" secondItem="SvM-GF-b51" secondAttribute="trailing" constant="20" id="RnS-Wt-8Id"/>
                             <constraint firstItem="SvM-GF-b51" firstAttribute="top" secondItem="0Lk-sa-Kr3" secondAttribute="bottom" constant="25" id="Tci-LE-XYs"/>
+                            <constraint firstItem="lNo-np-0Fe" firstAttribute="trailing" secondItem="2ua-qp-a2U" secondAttribute="trailing" constant="10" id="dIR-gI-7uo"/>
                             <constraint firstItem="0Lk-sa-Kr3" firstAttribute="top" secondItem="uEI-8p-zzy" secondAttribute="bottom" constant="10" id="iv2-Nw-uVn"/>
                             <constraint firstItem="uTl-pn-5ja" firstAttribute="leading" secondItem="lNo-np-0Fe" secondAttribute="leading" constant="10" id="o7l-2H-hPW"/>
                             <constraint firstItem="lNo-np-0Fe" firstAttribute="trailing" secondItem="uTl-pn-5ja" secondAttribute="trailing" constant="10" id="qya-rX-W4A"/>
                             <constraint firstItem="uEI-8p-zzy" firstAttribute="leading" secondItem="lNo-np-0Fe" secondAttribute="leading" constant="10" id="yI4-Ak-LQJ"/>
+                            <constraint firstItem="2ua-qp-a2U" firstAttribute="top" secondItem="uTl-pn-5ja" secondAttribute="bottom" constant="25" id="zr2-hb-74S"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8gO-hS-cmg">
@@ -227,13 +238,14 @@
                     <connections>
                         <outlet property="datePicker" destination="0Lk-sa-Kr3" id="LkV-4f-MU1"/>
                         <outlet property="datePickerTextField" destination="uEI-8p-zzy" id="jzH-jn-W0W"/>
+                        <outlet property="detailsTextField" destination="2ua-qp-a2U" id="HYS-Np-vPi"/>
                         <outlet property="disableAlertButton" destination="SvM-GF-b51" id="Jxk-5A-3Y5"/>
                         <outlet property="titleTextField" destination="uTl-pn-5ja" id="QVw-D5-t3W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uGF-If-nei" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2203" y="652"/>
+            <point key="canvasLocation" x="2202.898550724638" y="651.5625"/>
         </scene>
         <!--My Pets-->
         <scene sceneID="vAe-8N-MaG">
@@ -244,7 +256,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DMQ-9r-EVg">
-                                <rect key="frame" x="0.0" y="96" width="414" height="653"/>
+                                <rect key="frame" x="0.0" y="96" width="414" height="653.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="petCell" rowHeight="116" id="liB-GE-aXB" customClass="PetListTableViewCell" customModule="PetWatch" customModuleProvider="target">
@@ -299,16 +311,16 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="Pet Emergency Information:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yl2-4z-UJb">
-                                <rect key="frame" x="8" y="761.5" width="211" height="20.5"/>
+                                <rect key="frame" x="8" y="762" width="168" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="iFk-2C-aCc"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEb-Bt-NHb">
-                                <rect key="frame" x="238" y="756.5" width="160" height="30.5"/>
+                                <rect key="frame" x="238" y="757" width="160" height="30"/>
                                 <state key="normal" title="ASPCA Emergency Info"/>
                                 <connections>
                                     <action selector="aspcaInfoButtonTapped:" destination="Z8K-Jx-yNu" eventType="touchUpInside" id="E8P-IV-RKc"/>

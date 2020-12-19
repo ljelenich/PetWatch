@@ -24,12 +24,6 @@
                                 <color key="textColor" name="grayColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in or sign up to enter and share" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zr7-Yv-elv">
-                                <rect key="frame" x="72.5" y="320" width="269" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PetWatchLogo" translatesAutoresizingMaskIntoConstraints="NO" id="gOp-5p-7hs">
                                 <rect key="frame" x="132" y="124" width="150" height="150"/>
                                 <constraints>
@@ -38,13 +32,13 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vw8-ah-9ap">
-                                <rect key="frame" x="107" y="391" width="200" height="45"/>
+                                <rect key="frame" x="107" y="340" width="200" height="45"/>
                                 <color key="backgroundColor" name="grayColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="35V-ot-NRj"/>
                                     <constraint firstAttribute="height" constant="45" id="liI-TK-Rdc"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Let's Go"/>
                                 <connections>
@@ -55,15 +49,12 @@
                         <viewLayoutGuide key="safeArea" id="VDV-a5-0m7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="zr7-Yv-elv" firstAttribute="top" secondItem="vIf-VP-DZJ" secondAttribute="bottom" constant="5" id="D6G-k5-GDU"/>
                             <constraint firstItem="gOp-5p-7hs" firstAttribute="top" secondItem="VDV-a5-0m7" secondAttribute="top" constant="80" id="Dn1-HM-uUu"/>
-                            <constraint firstItem="gOp-5p-7hs" firstAttribute="centerX" secondItem="zr7-Yv-elv" secondAttribute="centerX" id="Os5-NA-pby"/>
                             <constraint firstItem="vIf-VP-DZJ" firstAttribute="centerX" secondItem="VDV-a5-0m7" secondAttribute="centerX" id="Ty8-Gc-EnS"/>
                             <constraint firstItem="vIf-VP-DZJ" firstAttribute="top" secondItem="gOp-5p-7hs" secondAttribute="bottom" constant="12" id="V47-KN-LM3"/>
-                            <constraint firstItem="vw8-ah-9ap" firstAttribute="top" secondItem="zr7-Yv-elv" secondAttribute="bottom" constant="50.5" id="Wwo-mR-oe0"/>
+                            <constraint firstItem="vw8-ah-9ap" firstAttribute="top" secondItem="vIf-VP-DZJ" secondAttribute="bottom" constant="25" id="jaf-ho-Co5"/>
                             <constraint firstItem="gOp-5p-7hs" firstAttribute="centerX" secondItem="VDV-a5-0m7" secondAttribute="centerX" id="kF5-2W-fem"/>
                             <constraint firstItem="vw8-ah-9ap" firstAttribute="centerX" secondItem="VDV-a5-0m7" secondAttribute="centerX" id="n3c-D8-dIn"/>
-                            <constraint firstItem="zr7-Yv-elv" firstAttribute="centerX" secondItem="VDV-a5-0m7" secondAttribute="centerX" id="qWE-JG-DUE"/>
                         </constraints>
                     </view>
                 </viewController>

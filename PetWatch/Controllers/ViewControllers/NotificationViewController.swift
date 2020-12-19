@@ -16,6 +16,7 @@ class NotificationViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var datePickerTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var detailsTextField: UITextField!
     @IBOutlet weak var disableAlertButton: UIButton!
     
     //MARK: - Properties
@@ -95,6 +96,7 @@ class NotificationViewController: UIViewController {
     
     func setupViews() {
         titleTextField.text = notification?.title
+        detailsTextField.text = notification?.details
         self.view.backgroundColor = UIColor(named: "lightGreyColor")
         disableAlertButton.layer.borderColor = UIColor.lightGray.cgColor
         disableAlertButton.layer.borderWidth = CGFloat(2)
@@ -103,6 +105,7 @@ class NotificationViewController: UIViewController {
     
     func setupTextFields() {
         titleTextField.text = notification?.title
+        detailsTextField.text = notification?.details
         datePickerTextField.text = notification?.dateTime
     }
 
@@ -117,10 +120,10 @@ class NotificationViewController: UIViewController {
     }
     
     func scheduleNotification(date: Date) {
-        guard let title = titleTextField.text, !title.isEmpty else { return }
+        guard let title = titleTextField.text, !title.isEmpty, let details = detailsTextField.text else { return }
         let content = UNMutableNotificationContent()
         content.title = title
-        content.subtitle = description
+        content.subtitle = details
         content.sound = UNNotificationSound.default
         let calendar = Calendar(identifier: .gregorian)
         let components = calendar.dateComponents(in: .current, from: date)
@@ -139,14 +142,14 @@ class NotificationViewController: UIViewController {
             guard let alertUid = notification?.alertUid else { return }
             updateToFirestore(alertUid: alertUid, title: title, dateTime: setDateTime)
         } else {
-            saveToFirestore(alertUid: identifier, title: title, dateTime: setDateTime)
+            saveToFirestore(alertUid: identifier, title: title, details: details, dateTime: setDateTime)
         }
         NotificationCenter.default.post(name: NotificationViewController.updateNotificationName, object: nil)
     }
     
-    func saveToFirestore(alertUid: String, title: String, dateTime: String) {
+    func saveToFirestore(alertUid: String, title: String, details: String, dateTime: String) {
         guard let userUid = Auth.auth().currentUser?.uid else { return }
-        NotificationController.shared.createNotification(userUid: userUid, alertUid: alertUid, title: title, dateTime: dateTime) { (result) in
+        NotificationController.shared.createNotification(userUid: userUid, alertUid: alertUid, title: title, details: details, dateTime: dateTime) { (result) in
             switch result {
             case .success(_):
                 print("success")
