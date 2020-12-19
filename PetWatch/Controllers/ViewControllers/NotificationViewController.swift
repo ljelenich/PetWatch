@@ -140,7 +140,7 @@ class NotificationViewController: UIViewController {
 
         if ((notification?.alertUid.isEmpty) != nil) {
             guard let alertUid = notification?.alertUid else { return }
-            updateToFirestore(alertUid: alertUid, title: title, dateTime: setDateTime)
+            updateToFirestore(alertUid: alertUid, title: title, details: details, dateTime: setDateTime)
         } else {
             saveToFirestore(alertUid: identifier, title: title, details: details, dateTime: setDateTime)
         }
@@ -159,8 +159,8 @@ class NotificationViewController: UIViewController {
         }
     }
     
-    func updateToFirestore(alertUid: String, title: String, dateTime: String) {
-        NotificationController.shared.updateNotification(alertUid: alertUid, title: title, dateTime: dateTime) { (result) in
+    func updateToFirestore(alertUid: String, title: String, details: String, dateTime: String) {
+        NotificationController.shared.updateNotification(alertUid: alertUid, title: title, details: details, dateTime: dateTime) { (result) in
             switch result {
             case .success(_):
                 print("success")
